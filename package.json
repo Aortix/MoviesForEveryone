@@ -1,0 +1,19 @@
+{
+  "name": "moviesforeveryone",
+  "version": "1.0.0",
+  "description": "Search for movies to get information on or to find new movies to watch",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "author": "Stephen Riding",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
