@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const fetch = require("node-fetch");
-const genreIds = require("../movieGenres");
+const genreIds = require("../client/src/movieGenres");
 
 const theMovieDbBaseUrl =
   "https://api.themoviedb.org/3/search/movie?language=en-US";
