@@ -1,68 +1,57 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
+//Actions
+import { changeGenre } from "./actions/changeGenre";
+import { changeTitle } from "./actions/changeTitle";
+import { changeYear } from "./actions/changeYear";
+import { searchMovies } from "./actions/searchMovies";
+
+//Components
 import MovieTitle from "./components/movieTitle.js";
 import MovieReleaseYear from "./components/movieReleaseYear.js";
 import MovieGenre from "./components/movieGenre.js";
+import Filter from "./components/filter.js";
 
 class App extends Component {
-  constructor(props) {
-    super();
-    this.state = {
-      title: "",
-      genre: [],
-      releaseYear: 0
-    };
-  }
+  componentDidUpdate = () => {
+    console.log(
+      this.props.title,
+      this.props.year,
+      this.props.genre,
+      this.props.data
+    );
+  };
 
-  handleTitleSubmit = e => {
+  handleFormSubmit = e => {
     e.preventDefault();
-  };
-
-  handleTitleChange = e => {
-    this.setState({
-      title: e.target.value
-    });
-  };
-
-  handleReleaseYearChange = e => {
-    this.setState({
-      releaseYear: e.target.value
-    });
-  };
-
-  handleCheckChange = e => {
-    if (e.target.checked === false) {
-      this.setState({
-        genre: this.state.genre.filter(genre => {
-          return e.target.value !== genre;
-        })
-      });
-    } else {
-      this.setState({
-        genre: [...this.state.genre, e.target.value]
-      });
-    }
-  };
-
-  componentDidUpdate = e => {
-    console.log(this.state.title, this.state.releaseYear, this.state.genre);
+    this.props.searchMovies();
   };
 
   render() {
     return (
       <div className="App">
         <MovieTitle
-          handleTitleChange={this.handleTitleChange}
-          handleTitleSubmit={this.handleTitleSubmit}
-          title={this.state.title}
+          handleTitleChange={this.props.changeTitle}
+          handleTitleSubmit={this.handleFormSubmit}
+          title={this.props.title}
         />
-        <MovieReleaseYear
-          handleReleaseYearChange={this.handleReleaseYearChange}
-        />
-        <MovieGenre handleCheckChange={this.handleCheckChange} />
+        <Filter handleFilter={this.props.searchMovies} />
+        <MovieReleaseYear handleReleaseYearChange={this.props.changeYear} />
+        <MovieGenre handleCheckChange={this.props.changeGenre} />
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  title: state.changeTitle.title,
+  genre: state.changeGenre.genre,
+  year: state.changeYear.year,
+  data: state.search.data
+});
+
+export default connect(
+  mapStateToProps,
+  { changeGenre, changeTitle, changeYear, searchMovies }
+)(App);

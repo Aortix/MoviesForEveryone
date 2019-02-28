@@ -9,7 +9,8 @@ const theMovieDbBaseUrl =
 //Get request for a movie search using filters such as title, release year, and genre.
 //This request makes it so the search will display titles that START with the string supplied by the user
 //This request makes it so the search will display the genres supplied by the user ALONG with additional genres if they are included
-router.get("/standard", (req, res) => {
+router.post("/standard", (req, res) => {
+  console.log("Did this get pinged?");
   if (
     req.body.title.length > 0 &&
     req.body.genre.length > 0 &&
@@ -22,7 +23,10 @@ router.get("/standard", (req, res) => {
         }`
     )
       .then(data => {
-        return data.json();
+        return data.text();
+      })
+      .then(data => {
+        return JSON.parse(data);
       })
       .then(data => {
         let titleRegex = new RegExp("^(" + req.body.title + ")+", "i");
