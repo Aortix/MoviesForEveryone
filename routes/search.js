@@ -63,7 +63,7 @@ router.post("/standard", (req, res) => {
 //Get request for a movie search using filters such as title, release year, and genre.
 //This request makes it so the search will display titles that CONTAIN the string supplied by the user
 //This request makes it so the search will display the genres supplied by the user ALONG with additional genres if they are included
-router.get("/title-contain", (req, res) => {
+router.post("/title-contain", (req, res) => {
   if (
     req.body.title.length > 0 &&
     req.body.genre.length > 0 &&
@@ -113,7 +113,7 @@ router.get("/title-contain", (req, res) => {
 //Get request for a movie search using filters such as title, release year, and genre.
 //This request makes it so the search will display titles that START with the string supplied by the user
 //This request makes it so the search will display the movies with the genres that are supplied by the user that have NO additional genres
-router.get("/genre-specific", (req, res) => {
+router.post("/genre-specific", (req, res) => {
   if (
     req.body.title.length > 0 &&
     req.body.genre.length > 0 &&
@@ -166,7 +166,7 @@ router.get("/genre-specific", (req, res) => {
 //Get request for a movie search using filters such as title, release year, and genre.
 //This request makes it so the search will display titles that START with the string supplied by the user
 //This request makes it so the search will display the movies with the genres that are supplied by the user that have NO additional genres
-router.get("/title-contain-genre-specific", (req, res) => {
+router.post("/title-contain-genre-specific", (req, res) => {
   if (
     req.body.title.length > 0 &&
     req.body.genre.length > 0 &&
