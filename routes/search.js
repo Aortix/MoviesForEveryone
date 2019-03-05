@@ -216,4 +216,14 @@ router.post("/title-contain-genre-specific", (req, res) => {
   }
 });
 
+const theMovieDbBaseImageUrl = "https://image.tmdb.org/t/p/w200/";
+
+router.post("/image", (req, res) => {
+  fetch(theMovieDbBaseImageUrl + `${req.body.imagePath}`)
+    .then(data => res.send(data))
+    .catch(err => {
+      console.log(err);
+    });
+});
+
 module.exports = router;

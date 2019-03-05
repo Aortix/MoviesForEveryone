@@ -23,7 +23,10 @@ class App extends Component {
       this.props.title,
       this.props.year,
       this.props.genre,
+      this.props.results,
+      this.props.currentApiPage,
       this.props.data,
+      this.props.imageUrl,
       this.props.isCheckedTitle,
       this.props.isCheckedGenre
     );
@@ -47,7 +50,7 @@ class App extends Component {
         <MovieGenre handleCheckChange={this.props.changeGenre} />
         <GenreSpecific handleCheck={this.props.isChecked} />
         <MovieReleaseYear handleReleaseYearChange={this.props.changeYear} />
-        <MovieResults results={this.props.data} />
+        <MovieResults results={this.props.data} images={this.props.imageUrl} />
       </div>
     );
   }
@@ -57,7 +60,10 @@ const mapStateToProps = state => ({
   title: state.changeTitle.title,
   genre: state.changeGenre.genre,
   year: state.changeYear.year,
+  results: state.search.results,
+  currentApiPage: state.search.currentApiPage,
   data: state.search.data,
+  imageUrl: state.search.imageUrl,
   isCheckedTitle: state.isChecked.movieTitleChecked,
   isCheckedGenre: state.isChecked.movieGenreChecked
 });
