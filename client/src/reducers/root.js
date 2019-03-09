@@ -1,8 +1,9 @@
 import { combineReducers } from "redux";
-import searchReducer from "./searchReducer.js";
+import searchMoviesReducer from "./searchMoviesReducer.js";
 import changeGenreReducer from "./changeGenreReducer.js";
 import changeTitleReducer from "./changeTitleReducer.js";
 import changeYearReducer from "./changeYearReducer.js";
+import initialSearchReducer from "./initialSearchReducer.js";
 import isCheckedReducer from "./isCheckedReducer.js";
 
 export default combineReducers({
@@ -10,5 +11,6 @@ export default combineReducers({
   changeTitle: changeTitleReducer,
   changeYear: changeYearReducer,
   isChecked: isCheckedReducer,
-  search: searchReducer
+  searchMovies: searchMoviesReducer,
+  initialSearch: initialSearchReducer
 });

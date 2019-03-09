@@ -30,6 +30,9 @@ router.post("/standard", (req, res) => {
       })
       .then(data => {
         let titleRegex = new RegExp("^(" + req.body.title + ")+", "i");
+        let totalPages = data.total_pages;
+        let totalResults = data.total_results;
+        let currentPage = data.page;
         let titleFilteredData = data.results.filter(movie => {
           return titleRegex.test(movie.title);
         });
@@ -46,13 +49,14 @@ router.post("/standard", (req, res) => {
           "^" + req.body.year + "[0-9]{2}-[0-9]{2}-[0-9]{2}$",
           "g"
         );
-        res.send(
-          JSON.stringify(
-            genreFilteredData.filter(movie => {
-              return yearRegex.test(movie.release_date);
-            })
-          )
-        );
+        res.send({
+          currentPage,
+          total_results: totalResults,
+          total_pages: totalPages,
+          data: genreFilteredData.filter(movie => {
+            return yearRegex.test(movie.release_date);
+          })
+        });
       })
       .catch(err => {
         console.log(err);

@@ -1,0 +1,18 @@
+html {
+  height: 100vh;
+}
+
+body {
+  min-height: 100%;
+  background-color: blue;
+}
+.movieResults_container {
+}
+
+.movieResults_individual_results {
+  border: 1px solid black;
+}
+
+.movieResults_individual_results_shown {
+  border: 1px solid red;
+}
