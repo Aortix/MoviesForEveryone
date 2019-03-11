@@ -11,13 +11,15 @@ import { initialSearch } from "./actions/initialSearch";
 import { changePage } from "./actions/changePage";
 
 //Components
+import WebsiteTitle from "./components/websiteTitle.js";
+import Filter from "./components/filter.js";
 import MovieTitle from "./components/movieTitle.js";
 import MovieReleaseYear from "./components/movieReleaseYear.js";
 import MovieGenre from "./components/movieGenre.js";
 import MovieResults from "./components/movieResults.js";
 import GenreSpecific from "./components/genreSpecific.js";
 import TitleContain from "./components/titleContain.js";
-import Filter from "./components/filter.js";
+import Search from "./components/search.js";
 import PageNumbers from "./components/pageNumbers.js";
 
 class App extends Component {
@@ -35,8 +37,8 @@ class App extends Component {
       this.props.movieData,
       this.props.movieImages,
       this.props.pageNumber,
-      this.props.dataToDisplay,
-      this.props.imagesToDisplay
+      this.props.movieDataToDisplay,
+      this.props.movieImagesToDisplay
     );
 
     if (
@@ -64,16 +66,18 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <WebsiteTitle />
+        <Filter />
         <MovieTitle
           handleTitleChange={this.props.changeTitle}
           handleTitleSubmit={this.handleFormSubmit}
           title={this.props.title}
         />
         <TitleContain handleCheck={this.props.isChecked} />
-        <Filter handleFilter={this.props.initialSearch} />
         <MovieGenre handleCheckChange={this.props.changeGenre} />
         <GenreSpecific handleCheck={this.props.isChecked} />
         <MovieReleaseYear handleReleaseYearChange={this.props.changeYear} />
+        <Search handleSearch={this.props.initialSearch} />
         <MovieResults
           results={this.props.movieDataToDisplay}
           images={this.props.movieImagesToDisplay}
@@ -89,7 +93,7 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   genre: state.changeGenre.genre,
-  page: state.changePage.page,
+  currentPage: state.searchMovies.currentPage,
   title: state.changeTitle.title,
   year: state.changeYear.year,
   totalPages: state.searchMovies.totalPages,

@@ -1,18 +1,146 @@
+/*CSS reset, with my preferences*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+	margin-top: 0.2rem;
+	padding: 0;
+	border: 0;
+  font-size: 100%;
+  font: inherit;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ul, ol, li {
+  list-style-type: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/*End of reset code*/
+
+:root {
+  --main-bg-color: #f2e9e9;
+  --main-text-color: #843838;
+  --main-font-size: 23px;
+  --main-top-padding: 20px;
+  --main-top-margin: 20px;
+}
+
 html {
   height: 100vh;
+  font-size: var(--main-font-size);
+  padding-top: var(--main-top-padding);
+  margin-top: var(--main-top-margin);
 }
 
 body {
   min-height: 100%;
-  background-color: blue;
+  font-family: "Segoe UI", Calibri, Helvetica;
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
 }
-.movieResults_container {
+
+h1 {
+  font-weight: 500;
+  font-size:1.5rem;
+}
+
+.App {
+ min-height: 100%;
+ text-align: center;
+}
+
+.websiteTitle_title {
+  border-bottom: 0.5px solid var(--main-text-color);
+}
+
+.websiteTitle_quote {
+  padding-top: 0.15rem;
+  font-family: gabriola;
+  font-weight: 500;
+}
+
+.filter_button {
+}
+
+.movie_search_container {
+}
+
+.titleContain_container {
+  margin-top:0.01rem;
+}
+
+.movie_genre_container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: 300px;
+  text-align: left;
+  padding-left: 40px;
+}
+
+.movie_genre_genres {
+  font-size: 0.8rem;
+  width: 49%;
+}
+
+.release_year_container {
+  display: inline-block;
+  border: 1px solid var(--main-text-color);
+  margin-top: 0.6em;
+}
+
+.release_year_container > ul li {
+  border-bottom: 1px solid var(--main-text-color);
+  padding-bottom: 0.3em;
+  padding-left: 2.5em;
+  padding-right: 2.5em;
+}
+
+.release_year_container > ul li:last-child {
+  border: none;
 }
 
 .movieResults_individual_results {
   border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 300px;
+  margin: 0 auto;
+  text-align: left;
+  padding-left: 40px;
+  margin-top:0.8em;
+}
+.movieResults_text_results {
+font-size: 0.8rem;
+width: 49%;
 }
 
-.movieResults_individual_results_shown {
-  border: 1px solid red;
+.movieResults_image_results {
+width: 49%;
 }

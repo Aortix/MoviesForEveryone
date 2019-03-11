@@ -3,7 +3,6 @@ import React from "react";
 const movieReleaseYear = props => {
   return (
     <div className="release_year_container">
-      <div className="release_year_dropdown_options">
         <ul>
           <li onClick={props.handleReleaseYearChange} value={0}>
             No Range
@@ -18,7 +17,6 @@ const movieReleaseYear = props => {
             2000-2099
           </li>
         </ul>
-      </div>
     </div>
   );
 };
