@@ -47,19 +47,19 @@ export default function(state = initialState, action) {
       return {
         ...state,
         movieResultsLength: (state.movieResultsLength =
-          state.movieResultsLength >= 20
+          state.movieResultsLength >= 12
             ? 0 + action.payload.data.length
             : state.movieResultsLength + action.payload.data.length),
         currentApiPage: state.currentApiPage + 1,
         currentApiPageCount: (state.currentApiPageCount =
           state.currentApiPageCount === 40 ? 1 : state.currentApiPageCount + 1),
         pageNumberCount: (state.pageNumberCount =
-          state.movieResultsLength >= 20
+          state.movieResultsLength >= 12
             ? state.pageNumberCount + 1
             : state.pageNumberCount),
         pageNumber: [
           ...state.pageNumber,
-          state.movieResultsLength >= 20 ? state.pageNumberCount : null
+          state.movieResultsLength >= 12 ? state.pageNumberCount : null
         ],
         movieData: [...state.movieData, ...action.payload.data],
         movieImages: [

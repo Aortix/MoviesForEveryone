@@ -13,6 +13,7 @@ import { changePage } from "./actions/changePage";
 //Components
 import WebsiteTitle from "./components/websiteTitle.js";
 import Filter from "./components/filter.js";
+import MobileFilter from "./components/mobileFilter.js";
 import MovieTitle from "./components/movieTitle.js";
 import MovieReleaseYear from "./components/movieReleaseYear.js";
 import MovieGenre from "./components/movieGenre.js";
@@ -43,7 +44,7 @@ class App extends Component {
 
     if (
       this.props.currentApiPage !== this.props.totalPages &&
-      this.props.movieResultsLength < 20
+      this.props.movieResultsLength < 12
     ) {
       this.props.searchMovies(
         this.props.currentApiPage,
@@ -63,29 +64,49 @@ class App extends Component {
     this.props.changePage(Number(e.target.innerHTML));
   };
 
+  handleFilter = e => {
+    document
+      .querySelector(".complete_filter_container_minus_filter")
+      .classList.toggle("hide_filter_container");
+  };
+
   render() {
     return (
       <div className="App">
-        <WebsiteTitle />
-        <Filter />
-        <MovieTitle
-          handleTitleChange={this.props.changeTitle}
-          handleTitleSubmit={this.handleFormSubmit}
-          title={this.props.title}
-        />
-        <TitleContain handleCheck={this.props.isChecked} />
-        <MovieGenre handleCheckChange={this.props.changeGenre} />
-        <GenreSpecific handleCheck={this.props.isChecked} />
-        <MovieReleaseYear handleReleaseYearChange={this.props.changeYear} />
-        <Search handleSearch={this.props.initialSearch} />
-        <MovieResults
-          results={this.props.movieDataToDisplay}
-          images={this.props.movieImagesToDisplay}
-        />
-        <PageNumbers
-          numbers={this.props.pageNumber}
-          handleNumberClick={this.handleNumberClick}
-        />
+        <div className="Content">
+          <header className="header_container">
+            <WebsiteTitle />
+          </header>
+          <aside className="complete_filter_container">
+            <MobileFilter handleSearch={this.props.initialSearch} />
+            <Filter handleFilter={this.handleFilter} />
+            <div className="complete_filter_container_minus_filter">
+              <MovieTitle
+                handleTitleChange={this.props.changeTitle}
+                handleTitleSubmit={this.handleFormSubmit}
+                title={this.props.title}
+              />
+              <TitleContain handleCheck={this.props.isChecked} />
+              <MovieGenre handleCheckChange={this.props.changeGenre} />
+              <GenreSpecific handleCheck={this.props.isChecked} />
+              <MovieReleaseYear
+                handleReleaseYearChange={this.props.changeYear}
+              />
+            </div>
+          </aside>
+          <Search handleSearch={this.props.initialSearch} />
+          <section className="results_and_page_numbers_container">
+            <MovieResults
+              results={this.props.movieDataToDisplay}
+              images={this.props.movieImagesToDisplay}
+            />
+
+            <PageNumbers
+              numbers={this.props.pageNumber}
+              handleNumberClick={this.handleNumberClick}
+            />
+          </section>
+        </div>
       </div>
     );
   }

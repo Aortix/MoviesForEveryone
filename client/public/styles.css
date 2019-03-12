@@ -1,59 +1,140 @@
 /*CSS reset, with my preferences*/
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
   margin: 0;
-	margin-top: 0.2rem;
-	padding: 0;
-	border: 0;
+  margin-top: 0.2rem;
+  padding: 0;
+  border: 0;
   font-size: 100%;
   font: inherit;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 body {
-	line-height: 1;
+  line-height: 1;
 }
-ul, ol, li {
+ul,
+ol,
+li {
   list-style-type: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 /*End of reset code*/
 
 :root {
   --main-bg-color: #f2e9e9;
   --main-text-color: #843838;
-  --main-font-size: 23px;
-  --main-top-padding: 20px;
-  --main-top-margin: 20px;
+  --main-font-size: 20px;
+  --main-top-padding: 10px;
+  --main-top-margin: 10px;
 }
 
 html {
   height: 100vh;
   font-size: var(--main-font-size);
-  padding-top: var(--main-top-padding);
-  margin-top: var(--main-top-margin);
+  padding-top: 3px;
+  margin-top: 3px;
 }
 
 body {
@@ -65,12 +146,16 @@ body {
 
 h1 {
   font-weight: 500;
-  font-size:1.5rem;
+  font-size: 1.5rem;
 }
 
 .App {
- min-height: 100%;
- text-align: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.Content {
+  min-height: 100%;
 }
 
 .websiteTitle_title {
@@ -83,64 +168,280 @@ h1 {
   font-weight: 500;
 }
 
+.websiteTitle_container > p {
+  font-size: 0.4rem;
+  font-weight: 300;
+  padding-top: 5px;
+}
+
+.search_container_button {
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+  border: 1px solid var(--main-text-color);
+  padding: 1px 20px;
+}
+
+.mobileFilter_button {
+  position: absolute;
+  visibility: hidden;
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+  border: 1px solid var(--main-text-color);
+  padding: 1px 20px;
+}
+
 .filter_button {
+  background-color: var(--main-bg-color);
+  color: var(--main-text-color);
+  border: 1px solid var(--main-text-color);
+  padding: 1px 20px;
+}
+
+.hide_filter_container {
+  visibility: hidden;
+  position: absolute;
 }
 
 .movie_search_container {
+  padding-top: 0.3rem;
 }
 
 .titleContain_container {
-  margin-top:0.01rem;
+  margin-top: 0.01rem;
 }
 
+.titleContain_text {
+  font-size: 0.6rem;
+}
+
+.movie_genre_container_plus_name {
+  padding-top: 0.5rem;
+}
 .movie_genre_container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   margin: 0 auto;
-  max-width: 300px;
+  max-width: 250px;
+  max-height: 250px;
   text-align: left;
+  justify-content: center;
+  align-content: center;
   padding-left: 40px;
 }
 
 .movie_genre_genres {
-  font-size: 0.8rem;
-  width: 49%;
+  font-size: 0.7rem;
+}
+
+.genreSpecific_genre {
+  font-size: 0.6rem;
 }
 
 .release_year_container {
   display: inline-block;
+  padding-top: 0.5rem;
+}
+
+.release_year_container > ul {
   border: 1px solid var(--main-text-color);
-  margin-top: 0.6em;
+  margin-top: 0.3rem;
 }
 
 .release_year_container > ul li {
   border-bottom: 1px solid var(--main-text-color);
   padding-bottom: 0.3em;
-  padding-left: 2.5em;
-  padding-right: 2.5em;
+  padding-left: 2em;
+  padding-right: 2em;
 }
 
 .release_year_container > ul li:last-child {
   border: none;
 }
-
-.movieResults_individual_results {
-  border: 1px solid black;
+.movieResults_container {
+  font-size: 0.6rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   width: 300px;
   margin: 0 auto;
-  text-align: left;
-  padding-left: 40px;
-  margin-top:0.8em;
+  padding: 0 auto;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  margin-top: 0.8em;
+}
+
+.movieResults_individual_results {
+  border: 1px solid var(--main-text-color);
+  display: flex;
+  align-items: center;
+  width: 300px;
+  min-height: 170px;
+  margin-left: 12px;
+  margin-right: 12px;
+  margin-bottom: 8px;
 }
 .movieResults_text_results {
-font-size: 0.8rem;
-width: 49%;
+  display: inline-block;
+  padding: auto;
+  margin: auto;
+  width: 59%;
 }
 
 .movieResults_image_results {
-width: 49%;
+  display: inline-block;
+  padding: auto;
+  margin: auto;
+  width: 39%;
+}
+
+.movieResults_individual_titles {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.movieResults_individual_date > span {
+  font-weight: 500;
+  font-size: 0.7rem;
+}
+
+.movieResults_individual_genre_ids > span {
+  font-weight: 500;
+  font-size: 0.7rem;
+}
+
+.pageNumbers_container {
+  text-align: right;
+}
+
+.pageNumbers_individual_numbers {
+  margin-top: 0.2rem;
+  width: inherit;
+}
+
+.pageNumbers_real_numbers {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.pageNumbers_individual_numbers span:first-child {
+  border: 1px solid black;
+}
+
+@media screen and (min-width: 820px) {
+  .App {
+    text-align: left;
+  }
+
+  .header_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    min-width: 100%;
+    border-bottom: 1px solid var(--main-text-color);
+  }
+
+  .websiteTitle_container {
+    padding-bottom: 5px;
+  }
+
+  .websiteTitle_title {
+    border: none;
+    padding-left: 25px;
+    font-size: 1.2rem;
+  }
+
+  .websiteTitle_quote {
+    position: absolute;
+    visibility: hidden;
+  }
+  .websiteTitle_container > p {
+    text-align: center;
+  }
+
+  .search_container_button {
+    visibility: hidden;
+    position: absolute;
+  }
+
+  .mobileFilter_button {
+    visibility: visible;
+    position: static;
+  }
+
+  .filter_button {
+    visibility: hidden;
+    position: absolute;
+  }
+
+  .movie_genre_container {
+    min-width: 100%;
+    margin: 0;
+    padding-left: 4%;
+  }
+
+  .movie_genre_genres {
+    font-size: 0.65rem;
+  }
+
+  .complete_filter_container {
+    visibility: visible;
+    position: absolute;
+    min-width: 23%;
+    max-width: 23%;
+    padding-top: 15px;
+    text-align: center;
+    min-height: 100%;
+  }
+
+  .complete_filter_container_minus_filter {
+    visibility: visible;
+    position: static;
+  }
+
+  .results_and_page_numbers_container {
+    margin-top: 0;
+    min-width: 77%;
+    max-width: 77%;
+    padding-top: 15px;
+    margin-left: 23%;
+  }
+
+  .movieResults_container {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+  }
+
+  .movieResults_individual_results {
+    display: flex;
+    align-items: center;
+    width: 300px;
+    min-height: 170px;
+  }
+  .movieResults_text_results {
+    display: inline-block;
+    padding: auto;
+    margin: auto;
+    width: 59%;
+  }
+
+  .movieResults_image_results {
+    display: inline-block;
+    padding: auto;
+    margin: auto;
+    width: 39%;
+  }
+
+  .pageNumbers_individual_numbers {
+    position: relative;
+    min-height: 100%;
+    bottom: 5px;
+    right: 15px;
+  }
 }
