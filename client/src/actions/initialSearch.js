@@ -9,25 +9,36 @@ export const initialSearch = () => (dispatch, getState) => {
     getState().isChecked.movieTitleChecked &&
     getState().isChecked.movieGenreChecked === false
   ) {
+    console.log(`
+    page=1&title=${
+      getState().changeTitle.title
+    }&genre=${getState().changeGenre.genre.join()}&year=${
+      getState().changeYear.year
+    }
+  `);
     dispatch({
       type: FETCH_PAGES_REQUEST,
       payload: fetch("/search/standard", {
         method: "POST",
         headers: {
-          "Content-type": "application/json"
+          "Content-Type": "application/x-www-form-urlencoded",
+          Accept: "application/json"
         },
-        body: JSON.stringify({
-          page: 1,
-          title: getState().changeTitle.title,
-          genre: getState().changeGenre.genre,
-          year: getState().changeYear.year
-        })
+        body: `page=1&title=${
+          getState().changeTitle.title
+        }&genre=${getState().changeGenre.genre.join()}&year=${
+          getState().changeYear.year
+        }`
       })
-        .then(res => res.json())
+        .then(data => data.json())
         .then(data => {
-          dispatch({ type: FETCH_MOVIES_START_SUCCESS, payload: data });
+          dispatch({
+            type: FETCH_MOVIES_START_SUCCESS,
+            payload: data
+          });
         })
         .catch(err => {
+          console.log(err);
           dispatch({ type: FETCH_PAGES_FAILURE, payload: err });
         })
     });

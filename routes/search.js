@@ -11,11 +11,10 @@ const theMovieDbBaseUrl =
 //This request makes it so the search will display the genres supplied by the user ALONG with additional genres if they are included
 router.post("/standard", (req, res) => {
   console.log("Did this get pinged?");
-  if (
-    req.body.title.length > 0 &&
-    req.body.genre.length > 0 &&
-    req.body.year > 0
-  ) {
+  let count = 0;
+  let genreArray = req.body.genre.split(",");
+
+  if (req.body.title.length > 0 && genreArray.length > 0 && req.body.year > 0) {
     fetch(
       theMovieDbBaseUrl +
         `&api_key=${process.env.TMDB_API_KEY}&page=${req.body.page}&query=${
@@ -36,26 +35,29 @@ router.post("/standard", (req, res) => {
         let titleFilteredData = data.results.filter(movie => {
           return titleRegex.test(movie.title);
         });
-        let genreFilteredData = titleFilteredData.filter(movie => {
-          let count = 0;
-          for (let i = 0; i < req.body.genre.length; i++) {
-            if (movie.genre_ids.includes(genreIds[req.body.genre[i]])) {
+        let genreFilteredData = titleFilteredData.filter((movie, index) => {
+          count = 0;
+          genreArray.forEach(genre => {
+            if (movie.genre_ids.includes(genreIds[genre])) {
               count++;
             }
-          }
-          return count === req.body.genre.length;
+          });
+          return count === genreArray.length;
         });
         let yearRegex = new RegExp(
-          "^" + req.body.year + "[0-9]{2}-[0-9]{2}-[0-9]{2}$",
-          "g"
+          `${req.body.year}[0-9]{2}-[0-9]{2}-[0-9]{2}`,
+          "gm"
         );
-        res.send({
+
+        let dataToReturn = genreFilteredData.filter(movie => {
+          return yearRegex.test(movie.release_date) === true;
+        });
+
+        return res.send({
           currentPage,
           total_results: totalResults,
           total_pages: totalPages,
-          data: genreFilteredData.filter(movie => {
-            return yearRegex.test(movie.release_date);
-          })
+          data: dataToReturn
         });
       })
       .catch(err => {

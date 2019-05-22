@@ -48,14 +48,14 @@ export const searchMovies = (page, title, genre, year) => (
         payload: fetch("/search/standard", {
           method: "POST",
           headers: {
-            "Content-type": "application/json"
+            "Content-Type": "application/x-www-form-urlencoded",
+            Accept: "application/json"
           },
-          body: JSON.stringify({
-            page: page,
-            title: title,
-            genre: genre,
-            year: year
-          })
+          body: `page=${page}&title=${
+            getState().changeTitle.title
+          }&genre=${getState().changeGenre.genre.join()}&year=${
+            getState().changeYear.year
+          }`
         })
           .then(res => res.json())
           .then(data => dispatch({ type: FETCH_MOVIES_SUCCESS, payload: data }))
