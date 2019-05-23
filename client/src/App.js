@@ -24,6 +24,10 @@ import Search from "./components/search.js";
 import PageNumbers from "./components/pageNumbers.js";
 
 class App extends Component {
+  componentDidMount = () => {
+    this.props.initialSearch();
+  }
+
   componentDidUpdate = () => {
     console.log(
       this.props.currentApiPage,

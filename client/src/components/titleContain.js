@@ -3,9 +3,15 @@ import React from "react";
 export default function titleContain(props) {
   return (
     <div className="titleContain_container">
-      <input type="checkbox" onClick={props.handleCheck} value="title" />
+      <input
+        id="title-checkbox"
+        type="checkbox"
+        onClick={props.handleCheck}
+        value="title"
+        defaultChecked
+      />
       <span className="titleContain_text">
-        Show movies that BEGIN with the title
+        Show movies that BEGIN with the name above
       </span>
     </div>
   );
