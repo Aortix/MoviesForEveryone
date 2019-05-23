@@ -43,7 +43,11 @@ class App extends Component {
       this.props.pageNumber,*/
       this.props.movieData,
       this.props.movieImages,
-      this.props.limitNumber
+      this.props.limitNumber,
+      this.props.movieResultsLength,
+      this.props.currentApiPage,
+      this.props.totalPages,
+      this.props.year
     );
 
     if (
@@ -124,6 +128,8 @@ class App extends Component {
               images={this.props.movieImages}
               movieResultsLength={this.props.movieResultsLength}
               limitNumber={this.props.limitNumber}
+              currentApiPage={this.props.currentApiPage}
+              totalPages={this.props.totalPages}
             />
 
             <PageNumbers

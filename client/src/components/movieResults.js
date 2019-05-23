@@ -2,7 +2,10 @@ import React from "react";
 import genreIds from "../movieGenres.js";
 
 const movieResults = props => {
-  if (!(props.movieResultsLength >= 12)) {
+  if (
+    !(props.movieResultsLength >= 12) &&
+    props.currentApiPage !== props.totalPages
+  ) {
     return <h1>Loading</h1>;
   } else {
     return (
