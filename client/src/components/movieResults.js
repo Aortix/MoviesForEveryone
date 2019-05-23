@@ -6,7 +6,7 @@ const movieResults = props => {
     <div className="movieResults_container">
       {props.results.slice(0, 12).map((result, index) => {
         return (
-          <div className="movieResults_individual_results">
+          <div key={result["id"]} className="movieResults_individual_results">
             <div className="movieResults_text_results">
               <h3 className="movieResults_individual_titles">
                 {result["title"]}

@@ -326,7 +326,7 @@ h1 {
   padding-right: 8px;
 }
 
-.pageNumbers_individual_numbers span:first-child {
+.pageNumber-border {
   border: 1px solid black;
 }
 

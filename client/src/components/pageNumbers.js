@@ -8,9 +8,11 @@ export default function pageNumbers(props) {
           .filter(numbers => {
             return numbers !== null;
           })
-          .map(realNumbers => {
+          .map((realNumbers, index) => {
             return (
               <span
+                key={index}
+                id={`pageNumber-${index + 1}`}
                 className="pageNumbers_real_numbers"
                 onClick={props.handleNumberClick}
               >

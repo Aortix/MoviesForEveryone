@@ -26,10 +26,11 @@ import PageNumbers from "./components/pageNumbers.js";
 class App extends Component {
   componentDidMount = () => {
     this.props.initialSearch();
-  }
+  };
 
-  componentDidUpdate = () => {
+  componentDidUpdate = prevProps => {
     console.log(
+      this.props.currentPage,
       this.props.currentApiPage,
       this.props.currentApiPageCount,
       this.props.totalPages,
@@ -57,6 +58,12 @@ class App extends Component {
         this.props.year
       );
     }
+
+    if (prevProps.currentPage === 0 && this.props.currentPage === 1) {
+      document
+        .getElementById(`pageNumber-1`)
+        .classList.toggle("pageNumber-border");
+    }
   };
 
   handleFormSubmit = e => {
@@ -65,6 +72,12 @@ class App extends Component {
   };
 
   handleNumberClick = e => {
+    document
+      .getElementById(`pageNumber-${this.props.currentPage}`)
+      .classList.toggle("pageNumber-border");
+    document
+      .getElementById(`pageNumber-${Number(e.target.innerHTML)}`)
+      .classList.toggle("pageNumber-border");
     this.props.changePage(Number(e.target.innerHTML));
   };
 
