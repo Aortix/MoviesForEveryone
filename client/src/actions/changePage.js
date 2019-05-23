@@ -5,7 +5,6 @@ import { searchMovies } from "./searchMovies.js";
 export const changePage = e => (dispatch, getState) => {
   if (getState().searchMovies.pageNumber.includes(e + 1)) {
     console.log("Page Changed!");
-    console.log(e);
     dispatch({
       type: SWITCH_PAGE,
       payload: {

@@ -30,7 +30,7 @@ class App extends Component {
 
   componentDidUpdate = prevProps => {
     console.log(
-      this.props.currentPage,
+      /*this.props.currentPage,
       this.props.currentApiPage,
       this.props.currentApiPageCount,
       this.props.totalPages,
@@ -40,11 +40,10 @@ class App extends Component {
       this.props.year,
       this.props.isCheckedGenre,
       this.props.isCheckedTitle,
+      this.props.pageNumber,*/
       this.props.movieData,
       this.props.movieImages,
-      this.props.pageNumber,
-      this.props.movieDataToDisplay,
-      this.props.movieImagesToDisplay
+      this.props.limitNumber
     );
 
     if (
@@ -59,10 +58,17 @@ class App extends Component {
       );
     }
 
-    if (prevProps.currentPage === 0 && this.props.currentPage === 1) {
-      document
-        .getElementById(`pageNumber-1`)
-        .classList.toggle("pageNumber-border");
+    if (this.props.currentPage === 1) {
+      if (
+        document
+          .getElementById(`pageNumber-1`)
+          .classList.contains("pageNumber-border")
+      ) {
+      } else {
+        document
+          .getElementById(`pageNumber-1`)
+          .classList.toggle("pageNumber-border");
+      }
     }
   };
 
@@ -114,8 +120,10 @@ class App extends Component {
           <Search handleSearch={this.props.initialSearch} />
           <section className="results_and_page_numbers_container">
             <MovieResults
-              results={this.props.movieDataToDisplay}
-              images={this.props.movieImagesToDisplay}
+              results={this.props.movieData}
+              images={this.props.movieImages}
+              movieResultsLength={this.props.movieResultsLength}
+              limitNumber={this.props.limitNumber}
             />
 
             <PageNumbers
@@ -145,7 +153,8 @@ const mapStateToProps = state => ({
   movieData: state.searchMovies.movieData,
   movieImages: state.searchMovies.movieImages,
   movieDataToDisplay: state.searchMovies.movieDataToDisplay,
-  movieImagesToDisplay: state.searchMovies.movieImagesToDisplay
+  movieImagesToDisplay: state.searchMovies.movieImagesToDisplay,
+  limitNumber: state.searchMovies.limitNumber
 });
 
 export default connect(

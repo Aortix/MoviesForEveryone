@@ -5,9 +5,7 @@ export default function pageNumbers(props) {
     <div className="pageNumbers_container">
       <p className="pageNumbers_individual_numbers">
         {props.numbers
-          .filter(numbers => {
-            return numbers !== null;
-          })
+          .filter(numbers => numbers !== null)
           .map((realNumbers, index) => {
             return (
               <span

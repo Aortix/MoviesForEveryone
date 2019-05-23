@@ -18,7 +18,8 @@ const initialState = {
   movieData: [],
   movieImages: [],
   movieDataToDisplay: [],
-  movieImagesToDisplay: []
+  movieImagesToDisplay: [],
+  limitNumber: 0
 };
 
 export default function(state = initialState, action) {
@@ -40,12 +41,17 @@ export default function(state = initialState, action) {
         movieData: [],
         movieImages: [],
         movieDataToDisplay: [],
-        movieImagesToDisplay: []
+        movieImagesToDisplay: [],
+        limitNumber: 11
       };
     case FETCH_MOVIES_SUCCESS:
       console.log("Request for movies successful!");
       return {
         ...state,
+        limitNumber:
+          state.movieResultsLength >= 12
+            ? 12 * (state.pageNumberCount - 1) + 11
+            : 12 * (state.pageNumberCount - 1) + 11,
         movieResultsLength: (state.movieResultsLength =
           state.movieResultsLength >= 12
             ? 0 + action.payload.data.length
@@ -87,7 +93,8 @@ export default function(state = initialState, action) {
         ...state,
         currentPage: action.payload.number,
         movieDataToDisplay: [...action.payload.data],
-        movieImagesToDisplay: [...action.payload.imageData]
+        movieImagesToDisplay: [...action.payload.imageData],
+        limitNumber: 12 * (action.payload.number - 1) + 11
       };
     default:
       return state;
