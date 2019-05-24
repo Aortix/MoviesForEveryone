@@ -150,8 +150,19 @@ h1 {
 }
 
 .App {
-  height: 100%;
+  position: relative;
+  min-height: 100vh;
   text-align: center;
+}
+
+.Content {
+  min-height: 100vh;
+  margin-bottom: 100px;
+}
+
+.Content-page_numbers {
+  position: relative;
+  padding-bottom: 10px;
 }
 
 .websiteTitle_title {
@@ -326,11 +337,16 @@ h1 {
   bottom: 0;
   right: 0;
   text-align: right;
+  width: 100%;
+  padding-bottom: 5px;
 }
 
 .pageNumbers_individual_numbers {
-  margin-top: 0.2rem;
   width: inherit;
+  cursor: pointer;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--main-text-color);
 }
 
 .pageNumbers_real_numbers {
@@ -339,7 +355,7 @@ h1 {
 }
 
 .pageNumber-border {
-  border: 1px solid black;
+  border: 1px solid var(--main-text-color);
 }
 
 @media screen and (min-width: 820px) {
@@ -394,6 +410,11 @@ h1 {
   .mobileFilter_button {
     visibility: visible;
     position: static;
+  }
+
+  .mobileFilter_button:hover {
+    color: var(--main-bg-color);
+    background-color: var(--main-text-color);
   }
 
   .filter_button {
@@ -464,8 +485,6 @@ h1 {
 
   .pageNumbers_individual_numbers {
     position: relative;
-    min-height: 100%;
-    bottom: 5px;
-    right: 15px;
+    margin-bottom: 10px;
   }
 }
