@@ -6,8 +6,9 @@ const movieTitle = props => {
       <p className="movie_search_title">Movie Name</p>
       <form onSubmit={props.handleTitleSubmit}>
         <input
+          id="movie_search_input"
           type="text"
-          placeholder="Search..."
+          placeholder="Random..."
           value={props.title}
           onChange={props.handleTitleChange}
         />

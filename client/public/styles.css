@@ -150,12 +150,8 @@ h1 {
 }
 
 .App {
-  min-height: 100vh;
+  height: 100%;
   text-align: center;
-}
-
-.Content {
-  min-height: 100%;
 }
 
 .websiteTitle_title {
@@ -179,6 +175,7 @@ h1 {
   color: var(--main-text-color);
   border: 1px solid var(--main-text-color);
   padding: 1px 20px;
+  cursor: pointer;
 }
 
 .mobileFilter_button {
@@ -188,6 +185,7 @@ h1 {
   color: var(--main-text-color);
   border: 1px solid var(--main-text-color);
   padding: 1px 20px;
+  cursor: pointer;
 }
 
 .filter_button {
@@ -195,6 +193,7 @@ h1 {
   color: var(--main-text-color);
   border: 1px solid var(--main-text-color);
   padding: 1px 20px;
+  cursor: pointer;
 }
 
 .hide_filter_container {
@@ -239,24 +238,34 @@ h1 {
 }
 
 .release_year_container {
-  display: inline-block;
-  padding-top: 0.5rem;
+  display: block;
+  width: 150px;
+  margin: 0 auto;
+  margin-top: 1em;
 }
 
 .release_year_container > ul {
   border: 1px solid var(--main-text-color);
-  margin-top: 0.3rem;
 }
 
 .release_year_container > ul li {
+  cursor: pointer;
   border-bottom: 1px solid var(--main-text-color);
   padding-bottom: 0.3em;
-  padding-left: 2em;
-  padding-right: 2em;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 0.3em;
+  padding-top: 0.3em;
+  margin-top: 0px;
 }
 
 .release_year_container > ul li:last-child {
   border: none;
+}
+
+.release_year_active {
+  background-color: var(--main-text-color);
+  color: var(--main-bg-color);
 }
 .movieResults_container {
   font-size: 0.6rem;
@@ -313,6 +322,9 @@ h1 {
 }
 
 .pageNumbers_container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
   text-align: right;
 }
 
@@ -346,12 +358,24 @@ h1 {
 
   .websiteTitle_container {
     padding-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  #TMDB-logo {
+    order: 2;
+    margin: 0;
+    margin-right: 25px;
   }
 
   .websiteTitle_title {
+    order: 1;
     border: none;
     padding-left: 25px;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
   }
 
   .websiteTitle_quote {

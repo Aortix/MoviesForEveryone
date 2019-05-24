@@ -100,44 +100,43 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="Content">
-          <header className="header_container">
-            <WebsiteTitle />
-          </header>
-          <aside className="complete_filter_container">
-            <MobileFilter handleSearch={this.props.initialSearch} />
-            <Filter handleFilter={this.handleFilter} />
-            <div className="complete_filter_container_minus_filter">
-              <MovieTitle
-                handleTitleChange={this.props.changeTitle}
-                handleTitleSubmit={this.handleFormSubmit}
-                title={this.props.title}
-              />
-              <TitleContain handleCheck={this.props.isChecked} />
-              <MovieGenre handleCheckChange={this.props.changeGenre} />
-              <GenreSpecific handleCheck={this.props.isChecked} />
-              <MovieReleaseYear
-                handleReleaseYearChange={this.props.changeYear}
-              />
-            </div>
-          </aside>
-          <Search handleSearch={this.props.initialSearch} />
-          <section className="results_and_page_numbers_container">
-            <MovieResults
-              results={this.props.movieData}
-              images={this.props.movieImages}
-              movieResultsLength={this.props.movieResultsLength}
-              limitNumber={this.props.limitNumber}
-              currentApiPage={this.props.currentApiPage}
-              totalPages={this.props.totalPages}
+        <header className="header_container">
+          <WebsiteTitle />
+        </header>
+        <aside className="complete_filter_container">
+          <MobileFilter handleSearch={this.props.initialSearch} />
+          <Filter handleFilter={this.handleFilter} />
+          <div className="complete_filter_container_minus_filter">
+            <MovieTitle
+              handleTitleChange={this.props.changeTitle}
+              handleTitleSubmit={this.handleFormSubmit}
+              title={this.props.title}
             />
+            <TitleContain handleCheck={this.props.isChecked} />
+            <MovieGenre handleCheckChange={this.props.changeGenre} />
+            <GenreSpecific handleCheck={this.props.isChecked} />
+            <MovieReleaseYear
+              handleReleaseYearChange={this.props.changeYear}
+              year={this.props.year}
+            />
+          </div>
+        </aside>
+        <Search handleSearch={this.props.initialSearch} />
+        <section className="results_and_page_numbers_container">
+          <MovieResults
+            results={this.props.movieData}
+            images={this.props.movieImages}
+            movieResultsLength={this.props.movieResultsLength}
+            limitNumber={this.props.limitNumber}
+            currentApiPage={this.props.currentApiPage}
+            totalPages={this.props.totalPages}
+          />
 
-            <PageNumbers
-              numbers={this.props.pageNumber}
-              handleNumberClick={this.handleNumberClick}
-            />
-          </section>
-        </div>
+          <PageNumbers
+            numbers={this.props.pageNumber}
+            handleNumberClick={this.handleNumberClick}
+          />
+        </section>
       </div>
     );
   }
