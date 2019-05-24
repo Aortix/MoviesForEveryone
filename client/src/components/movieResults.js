@@ -15,7 +15,7 @@ const movieResults = props => {
           .map((result, index) => {
             return (
               <div
-                key={result["id"]}
+                key={result["id"] + index}
                 className="movieResults_individual_results"
               >
                 <div className="movieResults_text_results">
