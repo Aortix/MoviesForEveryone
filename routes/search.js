@@ -43,6 +43,14 @@ router.post("/standard", (req, res) => {
       let totalPages = data.total_pages;
       let totalResults = data.total_results;
       let currentPage = data.page;
+      if (data.results == undefined) {
+        return res.send({
+          currentPage,
+          total_results: totalResults,
+          total_pages: totalPages,
+          data: {}
+        });
+      }
       let titleFilteredData = data.results.filter(movie => {
         return titleRegex.test(movie.title);
       });
@@ -132,6 +140,14 @@ router.post("/title-contain", (req, res) => {
       let totalPages = data.total_pages;
       let totalResults = data.total_results;
       let currentPage = data.page;
+      if (data.results == undefined) {
+        return res.send({
+          currentPage,
+          total_results: totalResults,
+          total_pages: totalPages,
+          data: {}
+        });
+      }
       let titleFilteredData = data.results.filter(movie => {
         return titleRegex.test(movie.title);
       });
@@ -218,6 +234,14 @@ router.post("/genre-specific", (req, res) => {
       let totalPages = data.total_pages;
       let totalResults = data.total_results;
       let currentPage = data.page;
+      if (data.results == undefined) {
+        return res.send({
+          currentPage,
+          total_results: totalResults,
+          total_pages: totalPages,
+          data: {}
+        });
+      }
       let titleFilteredData = data.results.filter(movie => {
         return titleRegex.test(movie.title);
       });
@@ -307,6 +331,14 @@ router.post("/title-contain-genre-specific", (req, res) => {
       let totalPages = data.total_pages;
       let totalResults = data.total_results;
       let currentPage = data.page;
+      if (data.results == undefined) {
+        return res.send({
+          currentPage,
+          total_results: totalResults,
+          total_pages: totalPages,
+          data: {}
+        });
+      }
       let titleFilteredData = data.results.filter(movie => {
         return titleRegex.test(movie.title);
       });

@@ -1,7 +1,8 @@
 import {
   FETCH_PAGES_REQUEST,
   FETCH_PAGES_FAILURE,
-  FETCH_MOVIES_START_SUCCESS
+  FETCH_MOVIES_START_SUCCESS,
+  START_AND_STOP_SEARCH
 } from "./types.js";
 
 export const initialSearch = () => (dispatch, getState) => {
@@ -9,6 +10,7 @@ export const initialSearch = () => (dispatch, getState) => {
     getState().isChecked.movieTitleChecked &&
     getState().isChecked.movieGenreChecked === false
   ) {
+    dispatch({ type: START_AND_STOP_SEARCH, payload: 0 });
     dispatch({
       type: FETCH_PAGES_REQUEST,
       payload: fetch("/search/standard", {
@@ -39,6 +41,7 @@ export const initialSearch = () => (dispatch, getState) => {
     getState().isChecked.movieTitleChecked === false &&
     getState().isChecked.movieGenreChecked
   ) {
+    dispatch({ type: START_AND_STOP_SEARCH, payload: 0 });
     dispatch({
       type: FETCH_PAGES_REQUEST,
       payload: fetch("/search/title-contain-genre-specific", {
@@ -69,6 +72,7 @@ export const initialSearch = () => (dispatch, getState) => {
     getState().isChecked.movieTitleChecked &&
     getState().isChecked.movieGenreChecked
   ) {
+    dispatch({ type: START_AND_STOP_SEARCH, payload: 0 });
     dispatch({
       type: FETCH_PAGES_REQUEST,
       payload: fetch("/search/genre-specific", {
@@ -99,6 +103,7 @@ export const initialSearch = () => (dispatch, getState) => {
     getState().isChecked.movieTitleChecked === false &&
     getState().isChecked.movieGenreChecked === false
   ) {
+    dispatch({ type: START_AND_STOP_SEARCH, payload: 0 });
     dispatch({
       type: FETCH_PAGES_REQUEST,
       payload: fetch("/search/title-contain", {

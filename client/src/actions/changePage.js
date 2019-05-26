@@ -19,7 +19,7 @@ export const changePage = e => (dispatch, getState) => {
         number: e
       }
     });
-  } else {
+  } else if (getState().searchMovies.startAndStopSearch !== 1) {
     dispatch({
       type: SWITCH_PAGE,
       payload: {
@@ -37,5 +37,20 @@ export const changePage = e => (dispatch, getState) => {
         getState().changeYear.year
       )
     );
+  } else {
+    dispatch({
+      type: SWITCH_PAGE,
+      payload: {
+        data: getState().searchMovies.movieData.filter((items, index) => {
+          return pageNumbersRegex[e].test(index);
+        }),
+        imageData: getState().searchMovies.movieImages.filter(
+          (items, index) => {
+            return pageNumbersRegex[e].test(index);
+          }
+        ),
+        number: e
+      }
+    });
   }
 };

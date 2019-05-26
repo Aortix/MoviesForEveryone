@@ -18,19 +18,6 @@ const movieReleaseYear = props => {
             No Range
           </li>
         )}
-        {props.year === 18 ? (
-          <li
-            className="release_year_active"
-            onClick={props.handleReleaseYearChange}
-            value={18}
-          >
-            1800-1899
-          </li>
-        ) : (
-          <li onClick={props.handleReleaseYearChange} value={18}>
-            1800-1899
-          </li>
-        )}
         {props.year === 19 ? (
           <li
             className="release_year_active"

@@ -9,6 +9,7 @@ import { isChecked } from "./actions/isChecked";
 import { searchMovies } from "./actions/searchMovies";
 import { initialSearch } from "./actions/initialSearch";
 import { changePage } from "./actions/changePage";
+import { cancelSearch } from "./actions/searchMovies";
 
 //Components
 import WebsiteTitle from "./components/websiteTitle.js";
@@ -30,28 +31,25 @@ class App extends Component {
 
   componentDidUpdate = prevProps => {
     console.log(
-      /*this.props.currentPage,
+      //this.props.currentPage,
       this.props.currentApiPage,
-      this.props.currentApiPageCount,
+      //this.props.currentApiPageCount,
       this.props.totalPages,
       this.props.movieResultsLength,
-      this.props.title,
-      this.props.genre,
-      this.props.year,
-      this.props.isCheckedGenre,
-      this.props.isCheckedTitle,
-      this.props.pageNumber,*/
-      this.props.movieData,
-      this.props.movieImages,
-      this.props.limitNumber,
-      this.props.movieResultsLength,
-      this.props.currentApiPage,
-      this.props.totalPages,
-      this.props.year
+      //this.props.title,
+      //this.props.genre,
+      //this.props.year,
+      //this.props.isCheckedGenre,
+      //this.props.isCheckedTitle,
+      //this.props.pageNumber,
+      //this.props.movieData,
+      //this.props.movieImages,
+      //this.props.limitNumber
+      this.props.startAndStopSearch
     );
 
     if (
-      this.props.currentApiPage !== this.props.totalPages &&
+      this.props.currentApiPage < this.props.totalPages &&
       this.props.movieResultsLength < 12
     ) {
       this.props.searchMovies(
@@ -73,6 +71,14 @@ class App extends Component {
           .getElementById(`pageNumber-1`)
           .classList.toggle("pageNumber-border");
       }
+    }
+
+    if (
+      this.props.currentApiPage >= this.props.totalPages &&
+      !(this.props.movieResultsLength >= 12)
+    ) {
+      console.log("Interesting...");
+      this.props.cancelSearch(1);
     }
   };
 
@@ -106,7 +112,10 @@ class App extends Component {
           </header>
           <aside className="complete_filter_container">
             <MobileFilter handleSearch={this.props.initialSearch} />
-            <Filter handleFilter={this.handleFilter} />
+            <Filter
+              handleFilter={this.handleFilter}
+              startAndStopSearch={this.props.startAndStopSearch}
+            />
             <div className="complete_filter_container_minus_filter">
               <MovieTitle
                 handleTitleChange={this.props.changeTitle}
@@ -122,7 +131,10 @@ class App extends Component {
               />
             </div>
           </aside>
-          <Search handleSearch={this.props.initialSearch} />
+          <Search
+            handleSearch={this.props.initialSearch}
+            startAndStopSearch={this.props.startAndStopSearch}
+          />
           <section className="results_and_page_numbers_container">
             <MovieResults
               results={this.props.movieData}
@@ -131,6 +143,8 @@ class App extends Component {
               limitNumber={this.props.limitNumber}
               currentApiPage={this.props.currentApiPage}
               totalPages={this.props.totalPages}
+              cancelSearch={this.props.cancelSearch}
+              startAndStopSearch={this.props.startAndStopSearch}
             />
           </section>
         </div>
@@ -138,6 +152,10 @@ class App extends Component {
           <PageNumbers
             numbers={this.props.pageNumber}
             handleNumberClick={this.handleNumberClick}
+            startAndStopSearch={this.props.startAndStopSearch}
+            totalPages={this.props.totalPages}
+            currentApiPage={this.props.currentApiPage}
+            movieResultsLength={this.props.movieResultsLength}
           />
         </div>
       </div>
@@ -162,7 +180,8 @@ const mapStateToProps = state => ({
   movieImages: state.searchMovies.movieImages,
   movieDataToDisplay: state.searchMovies.movieDataToDisplay,
   movieImagesToDisplay: state.searchMovies.movieImagesToDisplay,
-  limitNumber: state.searchMovies.limitNumber
+  limitNumber: state.searchMovies.limitNumber,
+  startAndStopSearch: state.searchMovies.startAndStopSearch
 });
 
 export default connect(
@@ -174,6 +193,7 @@ export default connect(
     isChecked,
     searchMovies,
     initialSearch,
-    changePage
+    changePage,
+    cancelSearch
   }
 )(App);

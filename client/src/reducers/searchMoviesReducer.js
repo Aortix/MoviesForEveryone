@@ -3,7 +3,8 @@ import {
   FETCH_MOVIES_SUCCESS,
   FETCH_MOVIES_FAILURE,
   FETCH_MOVIES_START_SUCCESS,
-  SWITCH_PAGE
+  SWITCH_PAGE,
+  START_AND_STOP_SEARCH
 } from "../actions/types.js";
 
 const initialState = {
@@ -19,14 +20,16 @@ const initialState = {
   movieImages: [],
   movieDataToDisplay: [],
   movieImagesToDisplay: [],
-  limitNumber: 0
+  limitNumber: 0,
+  startAndStopSearch: 0
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case FETCH_MOVIES_REQUEST:
-      console.log("Request for movies sent!");
-      return state;
+      return {
+        ...state
+      };
     case FETCH_MOVIES_START_SUCCESS:
       return {
         ...state,
@@ -87,7 +90,11 @@ export default function(state = initialState, action) {
       };
     case FETCH_MOVIES_FAILURE:
       console.log("Something went wrong with movie fetch!");
-      return action.payload;
+      return {
+        ...state,
+        currentApiPage: state.totalPages,
+        movieResultsLength: 12
+      };
     case SWITCH_PAGE:
       return {
         ...state,
@@ -95,6 +102,13 @@ export default function(state = initialState, action) {
         movieDataToDisplay: [...action.payload.data],
         movieImagesToDisplay: [...action.payload.imageData],
         limitNumber: 12 * (action.payload.number - 1) + 11
+      };
+    case START_AND_STOP_SEARCH:
+      return {
+        ...state,
+        movieResultsLength: 12,
+        currentApiPage: state.totalPages,
+        startAndStopSearch: action.payload
       };
     default:
       return state;
