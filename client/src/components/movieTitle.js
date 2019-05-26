@@ -1,20 +1,43 @@
-import React from "react";
+import React, { Component } from "react";
 
-const movieTitle = props => {
-  return (
-    <div className="movie_search_container">
-      <p className="movie_search_title">Movie Name</p>
-      <form onSubmit={props.handleTitleSubmit}>
-        <input
-          id="movie_search_input"
-          type="text"
-          placeholder="Random..."
-          value={props.title}
-          onChange={props.handleTitleChange}
-        />
-      </form>
-    </div>
-  );
-};
+class movieTitle extends Component {
+  render() {
+    if (
+      !(this.props.movieResultsLength >= 12) &&
+      this.props.currentApiPage !== this.props.totalPages &&
+      this.props.startAndStopSearch !== 1
+    ) {
+      return (
+        <div className="movie_search_container">
+          <p className="movie_search_title">Movie Name</p>
+          <form>
+            <input
+              id="movie_search_input"
+              type="text"
+              placeholder="Searching..."
+              value={this.props.title}
+              readOnly
+            />
+          </form>
+        </div>
+      );
+    } else {
+      return (
+        <div className="movie_search_container">
+          <p className="movie_search_title">Movie Name</p>
+          <form onSubmit={this.props.handleTitleSubmit}>
+            <input
+              id="movie_search_input"
+              type="text"
+              placeholder="Random Name..."
+              value={this.props.title}
+              onChange={this.props.handleTitleChange}
+            />
+          </form>
+        </div>
+      );
+    }
+  }
+}
 
 export default movieTitle;

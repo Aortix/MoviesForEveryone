@@ -10,6 +10,7 @@ import { searchMovies } from "./actions/searchMovies";
 import { initialSearch } from "./actions/initialSearch";
 import { changePage } from "./actions/changePage";
 import { cancelSearch } from "./actions/searchMovies";
+import { startSearch } from "./actions/initialSearch";
 
 //Components
 import WebsiteTitle from "./components/websiteTitle.js";
@@ -25,27 +26,33 @@ import Search from "./components/search.js";
 import PageNumbers from "./components/pageNumbers.js";
 
 class App extends Component {
+  state = {
+    title: "",
+    year: 0
+  };
+
   componentDidMount = () => {
     this.props.initialSearch();
   };
 
-  componentDidUpdate = prevProps => {
+  componentDidUpdate = (prevProps, prevState) => {
     console.log(
       //this.props.currentPage,
       this.props.currentApiPage,
       //this.props.currentApiPageCount,
       this.props.totalPages,
       this.props.movieResultsLength,
-      //this.props.title,
+      this.props.title,
       //this.props.genre,
-      //this.props.year,
+      this.props.year,
+      this.props.tempYear
       //this.props.isCheckedGenre,
       //this.props.isCheckedTitle,
       //this.props.pageNumber,
       //this.props.movieData,
       //this.props.movieImages,
       //this.props.limitNumber
-      this.props.startAndStopSearch
+      //this.props.startAndStopSearch
     );
 
     if (
@@ -103,6 +110,18 @@ class App extends Component {
       .classList.toggle("hide_filter_container");
   };
 
+  handleTitleChange = e => {
+    this.setState({ title: e.target.value });
+  };
+
+  handleYearChange = e => {
+    this.setState({ year: e.target.value });
+  };
+
+  handleSearch = () => {
+    this.props.startSearch(this.state.title, this.state.year);
+  };
+
   render() {
     return (
       <div className="App">
@@ -111,23 +130,37 @@ class App extends Component {
             <WebsiteTitle />
           </header>
           <aside className="complete_filter_container">
-            <MobileFilter handleSearch={this.props.initialSearch} />
+            <MobileFilter
+              handleSearch={this.handleSearch}
+              movieResultsLength={this.props.movieResultsLength}
+              currentApiPage={this.props.currentApiPage}
+              totalPages={this.props.totalPages}
+              startAndStopSearch={this.props.startAndStopSearch}
+            />
             <Filter
               handleFilter={this.handleFilter}
               startAndStopSearch={this.props.startAndStopSearch}
             />
             <div className="complete_filter_container_minus_filter">
               <MovieTitle
-                handleTitleChange={this.props.changeTitle}
+                handleTitleChange={this.handleTitleChange}
                 handleTitleSubmit={this.handleFormSubmit}
-                title={this.props.title}
+                tempTitle={this.state.title}
+                movieResultsLength={this.props.movieResultsLength}
+                currentApiPage={this.props.currentApiPage}
+                totalPages={this.props.totalPages}
+                startAndStopSearch={this.props.startAndStopSearch}
               />
               <TitleContain handleCheck={this.props.isChecked} />
               <MovieGenre handleCheckChange={this.props.changeGenre} />
               <GenreSpecific handleCheck={this.props.isChecked} />
               <MovieReleaseYear
-                handleReleaseYearChange={this.props.changeYear}
-                year={this.props.year}
+                handleReleaseYearChange={this.handleYearChange}
+                year={this.state.year}
+                movieResultsLength={this.props.movieResultsLength}
+                currentApiPage={this.props.currentApiPage}
+                totalPages={this.props.totalPages}
+                startAndStopSearch={this.props.startAndStopSearch}
               />
             </div>
           </aside>
@@ -167,7 +200,9 @@ const mapStateToProps = state => ({
   genre: state.changeGenre.genre,
   currentPage: state.searchMovies.currentPage,
   title: state.changeTitle.title,
+  tempTitle: state.changeTitle.tempTitle,
   year: state.changeYear.year,
+  tempYear: state.changeYear.tempYear,
   totalPages: state.searchMovies.totalPages,
   isCheckedTitle: state.isChecked.movieTitleChecked,
   isCheckedGenre: state.isChecked.movieGenreChecked,
@@ -194,6 +229,7 @@ export default connect(
     searchMovies,
     initialSearch,
     changePage,
-    cancelSearch
+    cancelSearch,
+    startSearch
   }
 )(App);

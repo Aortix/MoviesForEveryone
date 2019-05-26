@@ -1,14 +1,19 @@
-import { ADD_GENRE, DELETE_GENRE } from "./types.js";
+import {
+  ADD_GENRE,
+  DELETE_GENRE,
+  ADD_TEMP_GENRE,
+  DELETE_TEMP_GENRE
+} from "./types.js";
 
 export const changeGenre = e => dispatch => {
   if (e.target.checked === true) {
     dispatch({
-      type: ADD_GENRE,
+      type: ADD_TEMP_GENRE,
       payload: e.target.value
     });
   } else {
     dispatch({
-      type: DELETE_GENRE,
+      type: DELETE_TEMP_GENRE,
       payload: e.target.value
     });
   }

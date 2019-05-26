@@ -2,7 +2,12 @@ import {
   FETCH_PAGES_REQUEST,
   FETCH_PAGES_FAILURE,
   FETCH_MOVIES_START_SUCCESS,
-  START_AND_STOP_SEARCH
+  START_AND_STOP_SEARCH,
+  ADD_GENRE,
+  ADD_MOVIE_TITLE,
+  CHECK_MOVIE_TITLE,
+  CHECK_MOVIE_GENRE,
+  ADD_RELEASE_YEAR
 } from "./types.js";
 
 export const initialSearch = () => (dispatch, getState) => {
@@ -131,4 +136,14 @@ export const initialSearch = () => (dispatch, getState) => {
         })
     });
   }
+};
+
+export const startSearch = (title, year) => (dispatch, getState) => {
+  dispatch({ type: ADD_GENRE });
+  dispatch({ type: ADD_MOVIE_TITLE, payload: title });
+  dispatch({ type: CHECK_MOVIE_TITLE });
+  dispatch({ type: CHECK_MOVIE_GENRE });
+  dispatch({ type: ADD_RELEASE_YEAR, payload: year });
+
+  dispatch(initialSearch());
 };

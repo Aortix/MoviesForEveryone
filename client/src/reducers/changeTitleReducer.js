@@ -1,7 +1,8 @@
-import { ADD_MOVIE_TITLE } from "../actions/types";
+import { ADD_MOVIE_TITLE, ADD_TEMP_MOVIE_TITLE } from "../actions/types";
 
 const initialState = {
-  title: ""
+  title: "",
+  tempTitle: ""
 };
 
 export default function(state = initialState, action) {
@@ -11,6 +12,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         title: state.title.replace(state.title, action.payload)
+      };
+    case ADD_TEMP_MOVIE_TITLE:
+      return {
+        ...state,
+        tempTitle: state.tempTitle.replace(state.tempTitle, action.payload)
       };
     default:
       return state;
