@@ -1,4 +1,4 @@
-import { SWITCH_PAGE } from "./types.js";
+import { SWITCH_PAGE, USE_PREVIOUS_STATE_GENRE } from "./types.js";
 import { pageNumbersRegex } from "../pageNumbersRegex.js";
 import { searchMovies } from "./searchMovies.js";
 
@@ -29,6 +29,7 @@ export const changePage = e => (dispatch, getState) => {
       }
     });
     console.log("dispensed update pages, now doing searchMovies!");
+    dispatch({ type: USE_PREVIOUS_STATE_GENRE });
     dispatch(
       searchMovies(
         getState().searchMovies.currentApiPage,

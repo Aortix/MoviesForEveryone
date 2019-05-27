@@ -9,7 +9,11 @@ import {
   ADD_MOVIE_TITLE,
   CHECK_MOVIE_TITLE,
   CHECK_MOVIE_GENRE,
-  ADD_RELEASE_YEAR
+  ADD_RELEASE_YEAR,
+  ADD_TEMP_MOVIE_TITLE,
+  ADD_TEMP_GENRE,
+  ADD_PREVIOUS_STATE_GENRE,
+  USE_PREVIOUS_STATE_GENRE
 } from "./types.js";
 
 export const initialSearch = () => (dispatch, getState) => {
@@ -19,8 +23,6 @@ export const initialSearch = () => (dispatch, getState) => {
     getState().isChecked.movieTitleChecked &&
     getState().isChecked.movieGenreChecked === false
   ) {
-    console.log("this should be called...");
-
     dispatch({ type: CLEAR_ERRORS });
     dispatch({
       type: FETCH_PAGES_REQUEST,
@@ -37,20 +39,30 @@ export const initialSearch = () => (dispatch, getState) => {
         }`
       })
         .then(data => {
-          console.log(data);
           if (data.status === 400) {
-            console.log("Does this get called?");
             problem = 1;
             dispatch({ type: STOP_SEARCH, payload: 1 });
           }
           return data.json();
         })
         .then(data => {
-          if (problem === 1) {
-            console.log("is this getting called?");
+          console.log(data.title);
+          console.log(data.genre);
+          if (problem === 1 && data.title !== undefined) {
+            dispatch({
+              type: ADD_MOVIE_TITLE,
+              payload: getState().changeTitle.tempTitle
+            });
+            throw data;
+          } else if (problem === 1 && data.genre !== undefined) {
             throw data;
           } else {
             dispatch({ type: START_AND_STOP_SEARCH, payload: 0 });
+            dispatch({
+              type: ADD_TEMP_MOVIE_TITLE,
+              payload: getState().changeTitle.title
+            });
+            dispatch({ type: ADD_PREVIOUS_STATE_GENRE });
           }
           dispatch({
             type: FETCH_MOVIES_START_SUCCESS,
@@ -58,7 +70,6 @@ export const initialSearch = () => (dispatch, getState) => {
           });
         })
         .catch(err => {
-          console.log("Is this getting called?");
           dispatch({ type: FETCH_PAGES_FAILURE, payload: err });
         })
     });

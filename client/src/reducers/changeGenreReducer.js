@@ -2,12 +2,15 @@ import {
   ADD_GENRE,
   DELETE_GENRE,
   ADD_TEMP_GENRE,
-  DELETE_TEMP_GENRE
+  DELETE_TEMP_GENRE,
+  ADD_PREVIOUS_STATE_GENRE,
+  USE_PREVIOUS_STATE_GENRE
 } from "../actions/types.js";
 
 const initialState = {
   genre: [],
-  tempGenre: []
+  tempGenre: [],
+  previousState: []
 };
 
 export default function(state = initialState, action) {
@@ -32,6 +35,16 @@ export default function(state = initialState, action) {
       return {
         ...state,
         tempGenre: state.tempGenre.filter(item => item !== action.payload)
+      };
+    case ADD_PREVIOUS_STATE_GENRE:
+      return {
+        ...state,
+        previousState: Array.from(state.genre)
+      };
+    case USE_PREVIOUS_STATE_GENRE:
+      return {
+        ...state,
+        genre: state.previousState
       };
     default:
       return state;
