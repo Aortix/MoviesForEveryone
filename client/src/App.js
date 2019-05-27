@@ -11,6 +11,7 @@ import { initialSearch } from "./actions/initialSearch";
 import { changePage } from "./actions/changePage";
 import { cancelSearch } from "./actions/searchMovies";
 import { startSearch } from "./actions/initialSearch";
+import { stopSearch } from "./actions/searchMovies";
 
 //Components
 import WebsiteTitle from "./components/websiteTitle.js";
@@ -45,19 +46,21 @@ class App extends Component {
       this.props.title,
       //this.props.genre,
       this.props.year,
-      this.props.tempYear
+      this.props.tempYear,
       //this.props.isCheckedGenre,
       //this.props.isCheckedTitle,
       //this.props.pageNumber,
       //this.props.movieData,
       //this.props.movieImages,
       //this.props.limitNumber
-      //this.props.startAndStopSearch
+      this.props.startAndStopSearch,
+      this.props.errors
     );
 
     if (
       this.props.currentApiPage < this.props.totalPages &&
-      this.props.movieResultsLength < 12
+      this.props.movieResultsLength < 12 &&
+      Object.keys(this.props.errors.length === 0)
     ) {
       this.props.searchMovies(
         this.props.currentApiPage,
@@ -95,6 +98,7 @@ class App extends Component {
   };
 
   handleNumberClick = e => {
+    this.props.stopSearch(0);
     document
       .getElementById(`pageNumber-${this.props.currentPage}`)
       .classList.toggle("pageNumber-border");
@@ -150,9 +154,13 @@ class App extends Component {
                 currentApiPage={this.props.currentApiPage}
                 totalPages={this.props.totalPages}
                 startAndStopSearch={this.props.startAndStopSearch}
+                errors={this.props.errors}
               />
               <TitleContain handleCheck={this.props.isChecked} />
-              <MovieGenre handleCheckChange={this.props.changeGenre} />
+              <MovieGenre
+                handleCheckChange={this.props.changeGenre}
+                errors={this.props.errors}
+              />
               <GenreSpecific handleCheck={this.props.isChecked} />
               <MovieReleaseYear
                 handleReleaseYearChange={this.handleYearChange}
@@ -216,7 +224,8 @@ const mapStateToProps = state => ({
   movieDataToDisplay: state.searchMovies.movieDataToDisplay,
   movieImagesToDisplay: state.searchMovies.movieImagesToDisplay,
   limitNumber: state.searchMovies.limitNumber,
-  startAndStopSearch: state.searchMovies.startAndStopSearch
+  startAndStopSearch: state.searchMovies.startAndStopSearch,
+  errors: state.initialSearch.errors
 });
 
 export default connect(
@@ -230,6 +239,7 @@ export default connect(
     initialSearch,
     changePage,
     cancelSearch,
-    startSearch
+    startSearch,
+    stopSearch
   }
 )(App);

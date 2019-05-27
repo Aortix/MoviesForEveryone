@@ -2,7 +2,8 @@ import {
   FETCH_MOVIES_REQUEST,
   FETCH_MOVIES_SUCCESS,
   FETCH_MOVIES_FAILURE,
-  START_AND_STOP_SEARCH
+  START_AND_STOP_SEARCH,
+  STOP_SEARCH
 } from "./types.js";
 
 export const searchMovies = (page, title, genre, year) => (
@@ -129,4 +130,8 @@ export const searchMovies = (page, title, genre, year) => (
 
 export const cancelSearch = action => (dispatch, getState) => {
   dispatch({ type: START_AND_STOP_SEARCH, payload: action });
+};
+
+export const stopSearch = action => (dispatch, getState) => {
+  dispatch({ type: STOP_SEARCH, payload: action });
 };

@@ -19,6 +19,9 @@ class movieTitle extends Component {
               readOnly
             />
           </form>
+          {this.props.errors.title !== undefined ? (
+            <p>{this.props.errors.title}</p>
+          ) : null}
         </div>
       );
     } else {
@@ -34,6 +37,9 @@ class movieTitle extends Component {
               onChange={this.props.handleTitleChange}
             />
           </form>
+          {this.props.errors.title !== undefined ? (
+            <p>{this.props.errors.title}</p>
+          ) : null}
         </div>
       );
     }

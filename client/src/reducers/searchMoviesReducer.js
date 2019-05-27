@@ -4,7 +4,8 @@ import {
   FETCH_MOVIES_FAILURE,
   FETCH_MOVIES_START_SUCCESS,
   SWITCH_PAGE,
-  START_AND_STOP_SEARCH
+  START_AND_STOP_SEARCH,
+  STOP_SEARCH
 } from "../actions/types.js";
 
 const initialState = {
@@ -108,6 +109,11 @@ export default function(state = initialState, action) {
         ...state,
         movieResultsLength: 12,
         currentApiPage: state.totalPages,
+        startAndStopSearch: action.payload
+      };
+    case STOP_SEARCH:
+      return {
+        ...state,
         startAndStopSearch: action.payload
       };
     default:

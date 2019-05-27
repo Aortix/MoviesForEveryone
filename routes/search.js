@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const fetch = require("node-fetch");
 const genreIds = require("../client/src/movieGenres");
+const validation = require("./../validation/searchInput");
 
 const randomTitles = require("../randomTitles");
 
@@ -18,6 +19,17 @@ router.post("/standard", (req, res) => {
     var newTitle = randomTitles[Math.floor(Math.random() * 16)];
   } else {
     var newTitle = req.body.title;
+  }
+
+  let errors = validation(
+    newTitle,
+    req.body.genre,
+    Number(req.body.year),
+    Number(req.body.page)
+  );
+
+  if (errors.noErrors !== true) {
+    return res.status(400).send(errors);
   }
 
   if (req.body.genre.length === 0) {
@@ -117,6 +129,17 @@ router.post("/title-contain", (req, res) => {
     var newTitle = req.body.title;
   }
 
+  let errors = validation(
+    newTitle,
+    req.body.genre,
+    Number(req.body.year),
+    Number(req.body.page)
+  );
+
+  if (errors.noErrors !== true) {
+    return res.status(400).send(errors);
+  }
+
   if (req.body.genre.length === 0) {
     var genreArray = null;
   } else {
@@ -209,6 +232,17 @@ router.post("/genre-specific", (req, res) => {
     var newTitle = randomTitles[Math.floor(Math.random() * 16)];
   } else {
     var newTitle = req.body.title;
+  }
+
+  let errors = validation(
+    newTitle,
+    req.body.genre,
+    Number(req.body.year),
+    Number(req.body.page)
+  );
+
+  if (errors.noErrors !== true) {
+    return res.status(400).send(errors);
   }
 
   if (req.body.genre.length === 0) {
@@ -306,6 +340,17 @@ router.post("/title-contain-genre-specific", (req, res) => {
     var newTitle = randomTitles[Math.floor(Math.random() * 16)];
   } else {
     var newTitle = req.body.title;
+  }
+
+  let errors = validation(
+    newTitle,
+    req.body.genre,
+    Number(req.body.year),
+    Number(req.body.page)
+  );
+
+  if (errors.noErrors !== true) {
+    return res.status(400).send(errors);
   }
 
   if (req.body.genre.length === 0) {

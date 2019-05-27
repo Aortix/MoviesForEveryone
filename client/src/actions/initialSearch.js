@@ -3,6 +3,8 @@ import {
   FETCH_PAGES_FAILURE,
   FETCH_MOVIES_START_SUCCESS,
   START_AND_STOP_SEARCH,
+  STOP_SEARCH,
+  CLEAR_ERRORS,
   ADD_GENRE,
   ADD_MOVIE_TITLE,
   CHECK_MOVIE_TITLE,
@@ -11,11 +13,15 @@ import {
 } from "./types.js";
 
 export const initialSearch = () => (dispatch, getState) => {
+  let problem = 0;
+
   if (
     getState().isChecked.movieTitleChecked &&
     getState().isChecked.movieGenreChecked === false
   ) {
-    dispatch({ type: START_AND_STOP_SEARCH, payload: 0 });
+    console.log("this should be called...");
+
+    dispatch({ type: CLEAR_ERRORS });
     dispatch({
       type: FETCH_PAGES_REQUEST,
       payload: fetch("/search/standard", {
@@ -30,15 +36,29 @@ export const initialSearch = () => (dispatch, getState) => {
           getState().changeYear.year
         }`
       })
-        .then(data => data.json())
         .then(data => {
+          console.log(data);
+          if (data.status === 400) {
+            console.log("Does this get called?");
+            problem = 1;
+            dispatch({ type: STOP_SEARCH, payload: 1 });
+          }
+          return data.json();
+        })
+        .then(data => {
+          if (problem === 1) {
+            console.log("is this getting called?");
+            throw data;
+          } else {
+            dispatch({ type: START_AND_STOP_SEARCH, payload: 0 });
+          }
           dispatch({
             type: FETCH_MOVIES_START_SUCCESS,
             payload: data
           });
         })
         .catch(err => {
-          console.log(err);
+          console.log("Is this getting called?");
           dispatch({ type: FETCH_PAGES_FAILURE, payload: err });
         })
     });

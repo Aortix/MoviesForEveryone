@@ -1,11 +1,13 @@
 import {
   FETCH_PAGES_REQUEST,
   FETCH_PAGES_SUCCESS,
-  FETCH_PAGES_FAILURE
+  FETCH_PAGES_FAILURE,
+  CLEAR_ERRORS
 } from "../actions/types.js";
 
 const initialState = {
-  initialTotalPages: 0
+  initialTotalPages: 0,
+  errors: {}
 };
 
 export default function(state = initialState, action) {
@@ -21,7 +23,15 @@ export default function(state = initialState, action) {
       };
     case FETCH_PAGES_FAILURE:
       console.log("Error with page fetching");
-      return action.payload;
+      return {
+        ...state,
+        errors: action.payload
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        errors: {}
+      };
     default:
       return state;
   }
