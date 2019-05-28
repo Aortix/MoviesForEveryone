@@ -8,9 +8,12 @@ require("dotenv").config();
 
 const app = express();
 
-app.use(cors());
-
 app.use(bodyParser.urlencoded({ extended: false }));
+
+const corOptions = {
+  origin: "https://cryptic-badlands-88386.herokuapp.com/",
+  optionsSuccessStatus: 200
+};
 
 app.use("/search", router);
 
@@ -20,6 +23,10 @@ if (process.env.NODE_ENV === "production") {
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
+
+  app.use(cors(corOptions));
+} else {
+  app.use(cors());
 }
 
 const port = process.env.PORT || 5000;
