@@ -46,8 +46,6 @@ export const initialSearch = () => (dispatch, getState) => {
           return data.json();
         })
         .then(data => {
-          console.log(data.title);
-          console.log(data.genre);
           if (problem === 1 && data.title !== undefined) {
             dispatch({
               type: ADD_MOVIE_TITLE,
@@ -77,7 +75,9 @@ export const initialSearch = () => (dispatch, getState) => {
     getState().isChecked.movieTitleChecked === false &&
     getState().isChecked.movieGenreChecked
   ) {
-    dispatch({ type: START_AND_STOP_SEARCH, payload: 0 });
+    let problem = 0;
+
+    dispatch({ type: CLEAR_ERRORS });
     dispatch({
       type: FETCH_PAGES_REQUEST,
       payload: fetch("/search/title-contain-genre-specific", {
@@ -92,15 +92,36 @@ export const initialSearch = () => (dispatch, getState) => {
           getState().changeYear.year
         }`
       })
-        .then(data => data.json())
         .then(data => {
+          if (data.status === 400) {
+            problem = 1;
+            dispatch({ type: STOP_SEARCH, payload: 1 });
+          }
+          return data.json();
+        })
+        .then(data => {
+          if (problem === 1 && data.title !== undefined) {
+            dispatch({
+              type: ADD_MOVIE_TITLE,
+              payload: getState().changeTitle.tempTitle
+            });
+            throw data;
+          } else if (problem === 1 && data.genre !== undefined) {
+            throw data;
+          } else {
+            dispatch({ type: START_AND_STOP_SEARCH, payload: 0 });
+            dispatch({
+              type: ADD_TEMP_MOVIE_TITLE,
+              payload: getState().changeTitle.title
+            });
+            dispatch({ type: ADD_PREVIOUS_STATE_GENRE });
+          }
           dispatch({
             type: FETCH_MOVIES_START_SUCCESS,
             payload: data
           });
         })
         .catch(err => {
-          console.log(err);
           dispatch({ type: FETCH_PAGES_FAILURE, payload: err });
         })
     });
@@ -108,7 +129,9 @@ export const initialSearch = () => (dispatch, getState) => {
     getState().isChecked.movieTitleChecked &&
     getState().isChecked.movieGenreChecked
   ) {
-    dispatch({ type: START_AND_STOP_SEARCH, payload: 0 });
+    let problem = 0;
+
+    dispatch({ type: CLEAR_ERRORS });
     dispatch({
       type: FETCH_PAGES_REQUEST,
       payload: fetch("/search/genre-specific", {
@@ -123,15 +146,36 @@ export const initialSearch = () => (dispatch, getState) => {
           getState().changeYear.year
         }`
       })
-        .then(data => data.json())
         .then(data => {
+          if (data.status === 400) {
+            problem = 1;
+            dispatch({ type: STOP_SEARCH, payload: 1 });
+          }
+          return data.json();
+        })
+        .then(data => {
+          if (problem === 1 && data.title !== undefined) {
+            dispatch({
+              type: ADD_MOVIE_TITLE,
+              payload: getState().changeTitle.tempTitle
+            });
+            throw data;
+          } else if (problem === 1 && data.genre !== undefined) {
+            throw data;
+          } else {
+            dispatch({ type: START_AND_STOP_SEARCH, payload: 0 });
+            dispatch({
+              type: ADD_TEMP_MOVIE_TITLE,
+              payload: getState().changeTitle.title
+            });
+            dispatch({ type: ADD_PREVIOUS_STATE_GENRE });
+          }
           dispatch({
             type: FETCH_MOVIES_START_SUCCESS,
             payload: data
           });
         })
         .catch(err => {
-          console.log(err);
           dispatch({ type: FETCH_PAGES_FAILURE, payload: err });
         })
     });
@@ -139,7 +183,9 @@ export const initialSearch = () => (dispatch, getState) => {
     getState().isChecked.movieTitleChecked === false &&
     getState().isChecked.movieGenreChecked === false
   ) {
-    dispatch({ type: START_AND_STOP_SEARCH, payload: 0 });
+    let problem = 0;
+
+    dispatch({ type: CLEAR_ERRORS });
     dispatch({
       type: FETCH_PAGES_REQUEST,
       payload: fetch("/search/title-contain", {
@@ -154,15 +200,36 @@ export const initialSearch = () => (dispatch, getState) => {
           getState().changeYear.year
         }`
       })
-        .then(data => data.json())
         .then(data => {
+          if (data.status === 400) {
+            problem = 1;
+            dispatch({ type: STOP_SEARCH, payload: 1 });
+          }
+          return data.json();
+        })
+        .then(data => {
+          if (problem === 1 && data.title !== undefined) {
+            dispatch({
+              type: ADD_MOVIE_TITLE,
+              payload: getState().changeTitle.tempTitle
+            });
+            throw data;
+          } else if (problem === 1 && data.genre !== undefined) {
+            throw data;
+          } else {
+            dispatch({ type: START_AND_STOP_SEARCH, payload: 0 });
+            dispatch({
+              type: ADD_TEMP_MOVIE_TITLE,
+              payload: getState().changeTitle.title
+            });
+            dispatch({ type: ADD_PREVIOUS_STATE_GENRE });
+          }
           dispatch({
             type: FETCH_MOVIES_START_SUCCESS,
             payload: data
           });
         })
         .catch(err => {
-          console.log(err);
           dispatch({ type: FETCH_PAGES_FAILURE, payload: err });
         })
     });

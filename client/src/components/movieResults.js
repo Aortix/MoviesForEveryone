@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import genreIds from "../movieGenres.js";
+import SingleMovieResult from "./singleMovieResult.js";
 
 class movieResults extends Component {
-  componentDidUpdate = prevProps => {
+  componentDidUpdate = (prevProps, prevState) => {
     if (
       this.props.movieResultsLength >= 12 &&
       prevProps.movieResultsLength < 12
@@ -31,15 +32,57 @@ class movieResults extends Component {
       clearTimeout(this.state.timeoutVariable);
       this.setState({ loadingToLong: 0, timeoutVariable: null });
     }
+
+    if (this.state.toggle === false && prevState.toggle === true) {
+      console.log("is this running?");
+      window.removeEventListener("click", this.listen, false);
+    }
   };
 
   state = {
     loadingToLong: 0,
-    timeoutVariable: null
+    timeoutVariable: null,
+    movieData: null,
+    id: null,
+    Title: null,
+    Poster: null,
+    MouseY: 0,
+    toggle: false
   };
 
   quitSearch = () => {
     this.props.cancelSearch(1);
+  };
+
+  listen = () => {
+    this.setState({ toggle: !this.state.toggle });
+  };
+
+  setMovieId = (
+    id,
+    title,
+    genre,
+    overview,
+    release_date,
+    vote_average,
+    vote_count,
+    image,
+    mouseY
+  ) => {
+    this.setState({
+      id: id,
+      Title: title,
+      Poster: image,
+      Genre: genre,
+      movieData: {
+        "Release date": release_date,
+        "Average Score (0-10)": vote_average,
+        "Amount of Scores": vote_count
+      },
+      Overview: overview,
+      mouseY: mouseY
+    });
+    window.addEventListener("click", this.listen, false);
   };
 
   render() {
@@ -73,6 +116,19 @@ class movieResults extends Component {
                 <div
                   key={`${result["id"]}-${index}`}
                   className="movieResults_individual_results"
+                  onClick={e => {
+                    this.setMovieId(
+                      result["id"],
+                      result["title"],
+                      result["genre_ids"].join(),
+                      result["overview"],
+                      result["release_date"],
+                      result["vote_average"],
+                      result["vote_count"],
+                      this.props.images[index + this.props.limitNumber - 11],
+                      e.pageY - 100
+                    );
+                  }}
                 >
                   <div className="movieResults_text_results">
                     <h3 className="movieResults_individual_titles">
@@ -105,6 +161,17 @@ class movieResults extends Component {
                 </div>
               );
             })}
+          {this.state.toggle === true ? (
+            <SingleMovieResult
+              movieData={this.state.movieData}
+              id={this.state.id}
+              title={this.state.Title}
+              poster={this.state.Poster}
+              genre={this.state.Genre}
+              overview={this.state.Overview}
+              mouseY={this.state.mouseY}
+            />
+          ) : null}
         </div>
       );
     }

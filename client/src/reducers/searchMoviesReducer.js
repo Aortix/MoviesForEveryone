@@ -75,7 +75,7 @@ export default function(state = initialState, action) {
         movieImages: [
           ...state.movieImages,
           ...Array.from(action.payload.data).map(images => {
-            return "https://image.tmdb.org/t/p/w92/" + images.poster_path;
+            return "https://image.tmdb.org/t/p/w500/" + images.poster_path;
           })
         ],
         movieDataToDisplay: [
@@ -85,7 +85,7 @@ export default function(state = initialState, action) {
         movieImagesToDisplay: [
           ...state.movieImagesToDisplay,
           ...Array.from(action.payload.data).map(images => {
-            return "https://image.tmdb.org/t/p/w92/" + images.poster_path;
+            return "https://image.tmdb.org/t/p/w500/" + images.poster_path;
           })
         ]
       };

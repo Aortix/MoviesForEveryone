@@ -51,7 +51,8 @@ class App extends Component {
       //this.props.movieImages,
       //this.props.limitNumber
       this.props.startAndStopSearch,
-      this.props.errors
+      this.props.errors,
+      this.props.movieData
     );
 
     if (
