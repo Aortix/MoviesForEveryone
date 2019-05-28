@@ -4,11 +4,11 @@ import genreIds from "./../movieGenres.js";
 
 class SingleMovieResult extends Component {
   componentDidMount = () => {
-    console.log(this.props.mouseY);
     document
       .querySelector(".SingleMovieResult-container")
       .style.setProperty("top", `${this.props.mouseY}px`);
   };
+
   render() {
     return (
       <div id="SingleMovieResult" className="SingleMovieResult-container">

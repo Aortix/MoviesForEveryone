@@ -11,9 +11,7 @@ import {
   CHECK_MOVIE_GENRE,
   ADD_RELEASE_YEAR,
   ADD_TEMP_MOVIE_TITLE,
-  ADD_TEMP_GENRE,
-  ADD_PREVIOUS_STATE_GENRE,
-  USE_PREVIOUS_STATE_GENRE
+  ADD_PREVIOUS_STATE_GENRE
 } from "./types.js";
 
 export const initialSearch = () => (dispatch, getState) => {

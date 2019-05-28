@@ -1,10 +1,12 @@
-import { SWITCH_PAGE, USE_PREVIOUS_STATE_GENRE } from "./types.js";
+import {
+  SWITCH_PAGE,
+  USE_PREVIOUS_STATE_GENRE,
+  SET_MOVIE_LENGTH
+} from "./types.js";
 import { pageNumbersRegex } from "../pageNumbersRegex.js";
-import { searchMovies } from "./searchMovies.js";
 
 export const changePage = e => (dispatch, getState) => {
   if (getState().searchMovies.pageNumber.includes(e + 1)) {
-    console.log("Page Changed!");
     dispatch({
       type: SWITCH_PAGE,
       payload: {
@@ -28,16 +30,8 @@ export const changePage = e => (dispatch, getState) => {
         number: e
       }
     });
-    console.log("dispensed update pages, now doing searchMovies!");
     dispatch({ type: USE_PREVIOUS_STATE_GENRE });
-    dispatch(
-      searchMovies(
-        getState().searchMovies.currentApiPage,
-        getState().changeTitle.title,
-        getState().changeGenre.genre,
-        getState().changeYear.year
-      )
-    );
+    dispatch({ type: SET_MOVIE_LENGTH });
   } else {
     dispatch({
       type: SWITCH_PAGE,

@@ -1,6 +1,4 @@
 import {
-  CHECK_MOVIE_TITLE,
-  CHECK_MOVIE_GENRE,
   TEMP_CHECK_MOVIE_GENRE,
   TEMP_CHECK_MOVIE_TITLE
 } from "./types.js";

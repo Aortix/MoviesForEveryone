@@ -111,7 +111,7 @@ router.post("/standard", (req, res) => {
       });
     })
     .catch(err => {
-      console.log(err);
+      return res.send(err);
     });
   //}
 });
@@ -120,7 +120,6 @@ router.post("/standard", (req, res) => {
 //This request makes it so the search will display titles that CONTAIN the string supplied by the user
 //This request makes it so the search will display the genres supplied by the user ALONG with additional genres if they are included
 router.post("/title-contain", (req, res) => {
-  console.log("Title contain search");
   let count = 0;
 
   if (req.body.title === "") {
@@ -217,7 +216,7 @@ router.post("/title-contain", (req, res) => {
       });
     })
     .catch(err => {
-      console.log(err);
+      return res.send(err);
     });
 });
 
@@ -225,7 +224,6 @@ router.post("/title-contain", (req, res) => {
 //This request makes it so the search will display titles that START with the string supplied by the user
 //This request makes it so the search will display the movies with the genres that are supplied by the user that have NO additional genres
 router.post("/genre-specific", (req, res) => {
-  console.log("Genre specific search");
   let count = 0;
 
   if (req.body.title === "") {
@@ -325,7 +323,7 @@ router.post("/genre-specific", (req, res) => {
       });
     })
     .catch(err => {
-      console.log(err);
+      return res.send(err);
     });
 });
 
@@ -333,7 +331,6 @@ router.post("/genre-specific", (req, res) => {
 //This request makes it so the search will display titles that START with the string supplied by the user
 //This request makes it so the search will display the movies with the genres that are supplied by the user that have NO additional genres
 router.post("/title-contain-genre-specific", (req, res) => {
-  console.log("Title contain and genre specific search");
   let count = 0;
 
   if (req.body.title === "") {
@@ -433,7 +430,7 @@ router.post("/title-contain-genre-specific", (req, res) => {
       });
     })
     .catch(err => {
-      console.log(err);
+      return res.send(err);
     });
 });
 
@@ -443,7 +440,7 @@ router.post("/image", (req, res) => {
   fetch(theMovieDbBaseImageUrl + `${req.body.imagePath}`)
     .then(data => res.send(data))
     .catch(err => {
-      console.log(err);
+      return res.send(err);
     });
 });
 

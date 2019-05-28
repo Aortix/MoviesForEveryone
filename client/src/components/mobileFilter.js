@@ -8,7 +8,7 @@ export default function mobileFilter(props) {
   ) {
     return (
       <div className="mobileFilter_container">
-        <button className="mobileFilter_button">
+        <button className="mobileFilter_button mobileFilter_button-unactive">
           <span>Filter</span>
         </button>
       </div>

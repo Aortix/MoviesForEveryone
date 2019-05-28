@@ -5,7 +5,8 @@ import {
   FETCH_MOVIES_START_SUCCESS,
   SWITCH_PAGE,
   START_AND_STOP_SEARCH,
-  STOP_SEARCH
+  STOP_SEARCH,
+  SET_MOVIE_LENGTH
 } from "../actions/types.js";
 
 const initialState = {
@@ -49,7 +50,6 @@ export default function(state = initialState, action) {
         limitNumber: 11
       };
     case FETCH_MOVIES_SUCCESS:
-      console.log("Request for movies successful!");
       return {
         ...state,
         limitNumber:
@@ -90,7 +90,6 @@ export default function(state = initialState, action) {
         ]
       };
     case FETCH_MOVIES_FAILURE:
-      console.log("Something went wrong with movie fetch!");
       return {
         ...state,
         currentApiPage: state.totalPages,
@@ -115,6 +114,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         startAndStopSearch: action.payload
+      };
+    case SET_MOVIE_LENGTH:
+      return {
+        ...state,
+        movieResultsLength: 0
       };
     default:
       return state;

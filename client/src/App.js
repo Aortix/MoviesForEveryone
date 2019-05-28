@@ -37,24 +37,6 @@ class App extends Component {
   };
 
   componentDidUpdate = (prevProps, prevState) => {
-    console.log(
-      //this.props.currentPage,
-      this.props.currentApiPage,
-      //this.props.currentApiPageCount,
-      this.props.totalPages,
-      this.props.movieResultsLength,
-      this.props.genre,
-      //this.props.isCheckedGenre,
-      //this.props.isCheckedTitle,
-      //this.props.pageNumber,
-      //this.props.movieData,
-      //this.props.movieImages,
-      //this.props.limitNumber
-      this.props.startAndStopSearch,
-      this.props.errors,
-      this.props.movieData
-    );
-
     if (
       this.props.currentApiPage < this.props.totalPages &&
       this.props.movieResultsLength < 12 &&
@@ -85,7 +67,6 @@ class App extends Component {
       this.props.currentApiPage >= this.props.totalPages &&
       !(this.props.movieResultsLength >= 12)
     ) {
-      console.log("Interesting...");
       this.props.cancelSearch(1);
     }
   };
@@ -139,10 +120,7 @@ class App extends Component {
               totalPages={this.props.totalPages}
               startAndStopSearch={this.props.startAndStopSearch}
             />
-            <Filter
-              handleFilter={this.handleFilter}
-              startAndStopSearch={this.props.startAndStopSearch}
-            />
+            <Filter handleFilter={this.handleFilter} />
             <div className="complete_filter_container_minus_filter">
               <MovieTitle
                 handleTitleChange={this.handleTitleChange}
@@ -171,7 +149,11 @@ class App extends Component {
             </div>
           </aside>
           <Search
-            handleSearch={this.props.initialSearch}
+            errors={this.props.errors}
+            handleSearch={this.handleSearch}
+            movieResultsLength={this.props.movieResultsLength}
+            currentApiPage={this.props.currentApiPage}
+            totalPages={this.props.totalPages}
             startAndStopSearch={this.props.startAndStopSearch}
           />
           <section className="results_and_page_numbers_container">

@@ -182,11 +182,24 @@ h1 {
 }
 
 .search_container_button {
+  display: block;
   background-color: var(--main-bg-color);
   color: var(--main-text-color);
   border: 1px solid var(--main-text-color);
   padding: 1px 20px;
   cursor: pointer;
+  font-size: 0.8rem;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.search_container_button:hover {
+  background-color: var(--main-text-color);
+  color: var(--main-bg-color);
+}
+
+.search_container_button-unactive {
+  cursor: not-allowed;
 }
 
 .mobileFilter_button {
@@ -199,6 +212,15 @@ h1 {
   cursor: pointer;
 }
 
+.mobileFilter_button:hover {
+  color: var(--main-bg-color);
+  background-color: var(--main-text-color);
+}
+
+.mobileFilter_button-unactive {
+  cursor: not-allowed;
+}
+
 .filter_button {
   background-color: var(--main-bg-color);
   color: var(--main-text-color);
@@ -207,13 +229,48 @@ h1 {
   cursor: pointer;
 }
 
+.filter_button:hover {
+  background-color: var(--main-text-color);
+  color: var(--main-bg-color);
+}
+
 .hide_filter_container {
   visibility: hidden;
   position: absolute;
 }
 
+.search-errors {
+  display: inline-block;
+  border: 1px solid var(--main-bg-color);
+  border-radius: 10px;
+  background-color: var(--main-text-color);
+  color: var(--main-bg-color);
+  font-weight: 300;
+  margin: 6px auto;
+  padding: 6px;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
 .movie_search_container {
   padding-top: 0.3rem;
+}
+
+.movieTitle-errors {
+  display: inline-block;
+  border: 1px solid var(--main-bg-color);
+  border-radius: 10px;
+  background-color: var(--main-text-color);
+  color: var(--main-bg-color);
+  font-weight: 300;
+  margin: 12px auto;
+  padding: 12px;
+  text-align: center;
+  font-size: 0.8rem;
+}
+
+.movieTitle-unactive {
+  cursor: not-allowed;
 }
 
 .titleContain_container {
@@ -226,6 +283,7 @@ h1 {
 
 .movie_genre_container_plus_name {
   padding-top: 0.5rem;
+  margin: 0 auto;
 }
 .movie_genre_container {
   display: flex;
@@ -244,6 +302,18 @@ h1 {
   font-size: 0.7rem;
 }
 
+.movieGenre-errors {
+  display: inline-block;
+  border: 1px solid var(--main-bg-color);
+  border-radius: 10px;
+  background-color: var(--main-text-color);
+  color: var(--main-bg-color);
+  font-weight: 300;
+  margin: 12px auto;
+  padding: 12px;
+  text-align: center;
+}
+
 .genreSpecific_genre {
   font-size: 0.6rem;
 }
@@ -260,7 +330,6 @@ h1 {
 }
 
 .release_year_container > ul li {
-  cursor: pointer;
   border-bottom: 1px solid var(--main-text-color);
   padding-bottom: 0.3em;
   padding-left: 1em;
@@ -277,6 +346,14 @@ h1 {
 .release_year_active {
   background-color: var(--main-text-color);
   color: var(--main-bg-color);
+}
+
+.release_year-unactive {
+  cursor: not-allowed !important;
+}
+
+.release_year-pointer {
+  cursor: pointer;
 }
 
 .SingleMovieResult-container {
@@ -346,6 +423,13 @@ h1 {
   margin-right: 12px;
   margin-bottom: 8px;
 }
+
+.movieResults_individual_results:hover {
+  cursor: pointer;
+  color: var(--main-bg-color);
+  background-color: var(--main-text-color);
+}
+
 .movieResults_text_results {
   display: inline-block;
   padding: auto;
@@ -380,6 +464,31 @@ h1 {
   height: 134px;
 }
 
+.movieResults-loading_container {
+  position: relative;
+  top: 0px;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.movieResults-loading_statement {
+  margin-top: 30px;
+  font-weight: 400;
+}
+
+.movieResults-stop_searching {
+  box-shadow: 0px 0px 1px var(--main-text-color);
+  padding: 12px;
+  cursor: pointer;
+  margin-top: 12px;
+  color: var(--main-bg-color);
+  background-color: var(--main-text-color);
+}
+
+.movieResults-stop_searching:hover {
+  box-shadow: 0px 0px 5px var(--main-text-color);
+}
+
 .pageNumbers_container {
   position: absolute;
   bottom: 0;
@@ -391,7 +500,6 @@ h1 {
 
 .pageNumbers_individual_numbers {
   width: inherit;
-  cursor: pointer;
   padding-bottom: 10px;
   margin-bottom: 20px;
   border-bottom: 1px solid var(--main-text-color);
@@ -400,6 +508,11 @@ h1 {
 .pageNumbers_real_numbers {
   padding-left: 8px;
   padding-right: 8px;
+  cursor: pointer;
+}
+
+.pageNumbers-inactive {
+  cursor: not-allowed;
 }
 
 .pageNumber-border {
@@ -497,11 +610,6 @@ h1 {
     position: static;
   }
 
-  .mobileFilter_button:hover {
-    color: var(--main-bg-color);
-    background-color: var(--main-text-color);
-  }
-
   .filter_button {
     visibility: hidden;
     position: absolute;
@@ -567,6 +675,10 @@ h1 {
     padding: auto;
     margin: auto;
     width: 39%;
+  }
+
+  .movieResults-loading_container {
+    margin-top: 10%;
   }
 
   .pageNumbers_individual_numbers {

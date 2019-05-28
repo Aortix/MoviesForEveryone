@@ -15,7 +15,6 @@ export const searchMovies = (page, title, genre, year) => (
       getState().isChecked.movieTitleChecked &&
       getState().isChecked.movieGenreChecked
     ) {
-      console.log("Starting movie fetch request...");
       dispatch({
         type: FETCH_MOVIES_REQUEST,
         payload: fetch("/search/genre-specific", {
@@ -43,7 +42,6 @@ export const searchMovies = (page, title, genre, year) => (
       getState().isChecked.movieTitleChecked &&
       getState().isChecked.movieGenreChecked === false
     ) {
-      console.log("Starting movie fetch request...");
       dispatch({
         type: FETCH_MOVIES_REQUEST,
         payload: fetch("/search/standard", {
@@ -71,7 +69,6 @@ export const searchMovies = (page, title, genre, year) => (
       getState().isChecked.movieTitleChecked === false &&
       getState().isChecked.movieGenreChecked
     ) {
-      console.log("Starting movie fetch request...");
       dispatch({
         type: FETCH_MOVIES_REQUEST,
         payload: fetch("/search/title-contain-genre-specific", {
@@ -99,7 +96,6 @@ export const searchMovies = (page, title, genre, year) => (
       getState().isChecked.movieTitleChecked === false &&
       getState().isChecked.movieGenreChecked === false
     ) {
-      console.log("Starting movie fetch request...");
       dispatch({
         type: FETCH_MOVIES_REQUEST,
         payload: fetch("/search/title-contain", {

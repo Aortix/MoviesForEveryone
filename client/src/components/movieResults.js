@@ -8,7 +8,6 @@ class movieResults extends Component {
       this.props.movieResultsLength >= 12 &&
       prevProps.movieResultsLength < 12
     ) {
-      console.log("When you find 12 movies, this is called.");
       this.setState({ loadingToLong: 0 });
       clearTimeout(this.state.timeoutVariable);
       this.setState({ timeoutVariable: null });
@@ -16,11 +15,10 @@ class movieResults extends Component {
       this.props.movieResultsLength < 12 &&
       prevProps.movieResultsLength >= 12
     ) {
-      console.log("When you search this is called.");
       this.setState({
         timeoutVariable: setTimeout(() => {
           this.setState({ loadingToLong: 1 });
-        }, 5000)
+        }, 12000)
       });
     }
 
@@ -28,13 +26,11 @@ class movieResults extends Component {
       prevProps.startAndStopSearch === 0 &&
       this.props.startAndStopSearch === 1
     ) {
-      console.log("When you cancel a search, this is called.");
       clearTimeout(this.state.timeoutVariable);
       this.setState({ loadingToLong: 0, timeoutVariable: null });
     }
 
     if (this.state.toggle === false && prevState.toggle === true) {
-      console.log("is this running?");
       window.removeEventListener("click", this.listen, false);
     }
   };
@@ -92,18 +88,25 @@ class movieResults extends Component {
       this.props.startAndStopSearch !== 1
     ) {
       return (
-        <div className="movieResults-loading_container">
-          <i className="fas fa-spinner" />
-          <h2>Loading</h2>
-          <p>{this.props.movieResultsLength} results</p>
-          {this.state.loadingToLong === 1 ? (
-            <div>
-              <p>This is taking some time.</p>
-              <div onClick={this.quitSearch}>
-                Quit the search and show results?
+        <div className="movieResults_container">
+          <div className="movieResults-loading_container">
+            <i className="fas fa-spinner" />
+            <h2>Loading</h2>
+            <p>{this.props.movieResultsLength} results</p>
+            {this.state.loadingToLong === 1 ? (
+              <div>
+                <p className="movieResults-loading_statement">
+                  This is taking some time.
+                </p>
+                <div
+                  className="movieResults-stop_searching"
+                  onClick={this.quitSearch}
+                >
+                  Quit the search and show results?
+                </div>
               </div>
-            </div>
-          ) : null}
+            ) : null}{" "}
+          </div>
         </div>
       );
     } else {

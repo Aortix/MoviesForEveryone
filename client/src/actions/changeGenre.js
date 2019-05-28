@@ -1,6 +1,4 @@
 import {
-  ADD_GENRE,
-  DELETE_GENRE,
   ADD_TEMP_GENRE,
   DELETE_TEMP_GENRE
 } from "./types.js";

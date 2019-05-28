@@ -20,7 +20,9 @@ const movieGenre = props => {
           );
         })}
       </div>
-      {props.errors.genre !== undefined ? <p>{props.errors.genre}</p> : null}
+      {props.errors.genre !== undefined ? (
+        <div className="movieGenre-errors">{props.errors.genre}</div>
+      ) : null}
     </div>
   );
 };

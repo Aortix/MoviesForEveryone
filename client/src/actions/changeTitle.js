@@ -1,4 +1,4 @@
-import { ADD_MOVIE_TITLE, ADD_TEMP_MOVIE_TITLE } from "./types.js";
+import { ADD_TEMP_MOVIE_TITLE } from "./types.js";
 
 export const changeTitle = e => dispatch => {
   dispatch({

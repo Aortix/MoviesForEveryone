@@ -13,6 +13,7 @@ class movieTitle extends Component {
           <form>
             <input
               id="movie_search_input"
+              className="movieTitle-unactive"
               type="text"
               placeholder="Searching..."
               value={this.props.title}
@@ -38,7 +39,7 @@ class movieTitle extends Component {
             />
           </form>
           {this.props.errors.title !== undefined ? (
-            <p>{this.props.errors.title}</p>
+            <p className="movieTitle-errors">{this.props.errors.title}</p>
           ) : null}
         </div>
       );

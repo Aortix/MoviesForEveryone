@@ -9,7 +9,7 @@ const movieReleaseYear = props => {
     return (
       <div className="release_year_container">
         <p className="release_year_name">Release Year</p>
-        <ul>
+        <ul className="release_year-unactive">
           {props.year === 0 ? (
             <li className="release_year_active" value={0}>
               No Range
@@ -38,7 +38,7 @@ const movieReleaseYear = props => {
     return (
       <div className="release_year_container">
         <p className="release_year_name">Release Year</p>
-        <ul>
+        <ul className="release_year-pointer">
           {props.year === 0 ? (
             <li
               className="release_year_active"
