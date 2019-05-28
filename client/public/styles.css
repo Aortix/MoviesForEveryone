@@ -600,7 +600,7 @@ h1 {
     text-align: center;
   }
 
-  .search_container_button {
+  .search_container {
     visibility: hidden;
     position: absolute;
   }
