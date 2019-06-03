@@ -1,5 +1,4 @@
 # MoviesForEveryone
-https://cryptic-badlands-88386.herokuapp.com/
 
 **Created using React, Redux, and Express.js**
 
