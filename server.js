@@ -10,11 +10,6 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const corOptions = {
-  origin: "https://cryptic-badlands-88386.herokuapp.com/",
-  optionsSuccessStatus: 200
-};
-
 app.use("/search", router);
 
 if (process.env.NODE_ENV === "production") {
