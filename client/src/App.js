@@ -42,12 +42,23 @@ class App extends Component {
       this.props.movieResultsLength < 12 &&
       Object.keys(this.props.errors.length === 0)
     ) {
-      this.props.searchMovies(
-        this.props.currentApiPage,
-        this.props.title,
-        this.props.genre,
-        this.props.year
-      );
+      if (this.props.currentApiPage % 39 === 0) {
+        setTimeout(() => {
+          this.props.searchMovies(
+            this.props.currentApiPage,
+            this.props.title,
+            this.props.genre,
+            this.props.year
+          );
+        }, 3000);
+      } else {
+        this.props.searchMovies(
+          this.props.currentApiPage,
+          this.props.title,
+          this.props.genre,
+          this.props.year
+        );
+      }
     }
 
     if (this.props.currentPage === 1) {

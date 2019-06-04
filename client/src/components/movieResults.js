@@ -4,11 +4,6 @@ import SingleMovieResult from "./singleMovieResult.js";
 
 class movieResults extends Component {
   componentDidUpdate = (prevProps, prevState) => {
-    console.log("Loading status: " + this.state.loadingToLong);
-    console.log("Movie Results Length: " + this.props.movieResultsLength);
-    console.log("Current API Page: " + this.props.currentApiPage);
-    console.log("Total Pages: " + this.props.totalPages);
-    console.log("Start/Stop Search: " + this.props.startAndStopSearch);
     if (
       this.props.movieResultsLength >= 12 &&
       prevProps.movieResultsLength < 12
