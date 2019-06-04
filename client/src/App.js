@@ -44,14 +44,13 @@ class App extends Component {
     ) {
       if (this.props.currentApiPage % 39 === 0) {
         setTimeout(() => {
-          console.log(this.props.currentApiPage);
           this.props.searchMovies(
             this.props.currentApiPage,
             this.props.title,
             this.props.genre,
             this.props.year
           );
-        }, 6000);
+        }, 5000);
       } else {
         this.props.searchMovies(
           this.props.currentApiPage,

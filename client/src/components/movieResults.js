@@ -96,13 +96,13 @@ class movieResults extends Component {
             {this.state.loadingToLong === 1 ? (
               <div>
                 <p className="movieResults-loading_statement">
-                  This is taking some time.
+                  You can always:
                 </p>
                 <div
                   className="movieResults-stop_searching"
                   onClick={() => { this.quitSearch() }}
                 >
-                  Quit the search and show results?
+                  Quit the search and show results now
                 </div>
               </div>
             ) : null}{" "}
