@@ -611,8 +611,7 @@ h1 {
   }
 
   .movie_genre_container {
-    min-width: 100%;
-    margin: 0;
+    margin: 0 auto;
     padding-left: 4%;
   }
 
