@@ -286,16 +286,13 @@ h1 {
   margin: 0 auto;
 }
 .movie_genre_container {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 2fr auto;
   margin: 0 auto;
   max-width: 230px;
   max-height: 250px;
   text-align: left;
-  justify-content: center;
-  align-content: center;
-  padding-left: 30px;
+  margin-bottom: 20px;
 }
 
 .movie_genre_genres {

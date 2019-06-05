@@ -30,8 +30,10 @@ class movieResults extends Component {
       this.setState({ loadingToLong: 0, timeoutVariable: null });
     }
 
-    if (this.state.toggle === false && prevState.toggle === true) {
-      window.removeEventListener("click", this.listen, false);
+    if (this.state.toggle === true && prevState.toggle === false) {
+      this.props.appReference.addEventListener("click", this.listen, false);
+    } else if (this.state.toggle === false && prevState.toggle === true) {
+      this.props.appReference.removeEventListener("click", this.listen, false);
     }
   };
 
@@ -51,7 +53,7 @@ class movieResults extends Component {
   };
 
   listen = () => {
-    this.setState({ toggle: !this.state.toggle });
+    this.setState({ toggle: false });
   };
 
   setMovieId = (
@@ -76,9 +78,9 @@ class movieResults extends Component {
         "Amount of Scores": vote_count
       },
       Overview: overview,
-      mouseY: mouseY
+      mouseY: mouseY,
+      toggle: this.state.toggle === false ? true : false
     });
-    window.addEventListener("click", this.listen, false);
   };
 
   render() {

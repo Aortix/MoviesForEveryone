@@ -27,6 +27,11 @@ import Search from "./components/search.js";
 import PageNumbers from "./components/pageNumbers.js";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.appSelector = React.createRef();
+  }
+
   state = {
     title: "",
     year: 0
@@ -50,7 +55,7 @@ class App extends Component {
             this.props.genre,
             this.props.year
           );
-        }, 5000);
+        }, 6000);
       } else {
         this.props.searchMovies(
           this.props.currentApiPage,
@@ -118,7 +123,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App" ref={this.appSelector}>
         <div className="Content">
           <header className="header_container">
             <WebsiteTitle />
@@ -177,6 +182,7 @@ class App extends Component {
               totalPages={this.props.totalPages}
               cancelSearch={this.props.cancelSearch}
               startAndStopSearch={this.props.startAndStopSearch}
+              appReference={this.appSelector.current}
             />
           </section>
         </div>
