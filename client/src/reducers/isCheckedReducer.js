@@ -6,13 +6,13 @@ import {
 } from "../actions/types.js";
 
 const initialState = {
-  movieTitleChecked: true,
+  movieTitleChecked: false,
   movieGenreChecked: false,
-  tempMovieTitleChecked: true,
+  tempMovieTitleChecked: false,
   tempMovieGenreChecked: false
 };
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case CHECK_MOVIE_TITLE:
       return {

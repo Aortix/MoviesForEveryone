@@ -92,7 +92,7 @@ class movieResults extends Component {
       return (
         <div className="movieResults_container">
           <div className="movieResults-loading_container">
-            <i className="fas fa-spinner" />
+            <i className="fas fa-spinner fa-spin" />
             <h2>Loading</h2>
             <p>{this.props.movieResultsLength} results</p>
             {this.state.loadingToLong === 1 ? (

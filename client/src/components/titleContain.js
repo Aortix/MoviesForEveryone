@@ -8,7 +8,6 @@ export default function titleContain(props) {
         type="checkbox"
         onClick={props.handleCheck}
         value="title"
-        defaultChecked
       />
       <span className="titleContain_text">
         Show movies that BEGIN with the name above
