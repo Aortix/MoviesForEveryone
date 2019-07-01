@@ -102,12 +102,26 @@ class movieResults extends Component {
                 </p>
                 <div
                   className="movieResults-stop_searching"
-                  onClick={() => { this.quitSearch() }}
+                  onClick={() => {
+                    this.quitSearch();
+                  }}
                 >
                   Quit the search and show results now
                 </div>
               </div>
             ) : null}{" "}
+          </div>
+        </div>
+      );
+    } else if (
+      this.props.movieResultsLength === 12 &&
+      this.props.currentApiPage === this.props.totalPages &&
+      this.props.movieData.length === 0
+    ) {
+      return (
+        <div className="movieResults_container">
+          <div className="movieResults-loading_container">
+            <h1 className="movieResults-loading_statement">No Results</h1>
           </div>
         </div>
       );

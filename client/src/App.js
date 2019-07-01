@@ -42,6 +42,9 @@ class App extends Component {
   };
 
   componentDidUpdate = (prevProps, prevState) => {
+    console.log(this.props.currentApiPage);
+    console.log(this.props.totalPages);
+    console.log(this.props.movieResultsLength);
     if (
       this.props.currentApiPage < this.props.totalPages &&
       this.props.movieResultsLength < 12 &&
@@ -183,6 +186,7 @@ class App extends Component {
               cancelSearch={this.props.cancelSearch}
               startAndStopSearch={this.props.startAndStopSearch}
               appReference={this.appSelector.current}
+              movieData={this.props.movieData}
             />
           </section>
         </div>
