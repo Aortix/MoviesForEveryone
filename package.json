@@ -1,5 +1,5 @@
 {
-  "name": "moviesforeveryone",
+  "name": "movies_for_everyone_server",
   "version": "1.0.0",
   "description": "Search for movies to get information on or to find new movies to watch",
   "main": "server.js",
