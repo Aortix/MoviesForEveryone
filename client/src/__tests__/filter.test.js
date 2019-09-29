@@ -10,7 +10,7 @@ it('renders without crashing', () => {
 });
 
 it('renders without crashing', () => {
-    shallow(<Filter />);
+    shallow(<Filte />);
   });
 
 //Random text
