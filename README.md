@@ -2,7 +2,7 @@
 
 **Created using React, Redux, and Express.js**
 
-https://cryptic-badlands-88386.herokuapp.com/
+https://moviesforeveryone.herokuapp.com/
 
 Website for searching for movies that you may want to watch based off the filters that you set!  Click on each movie to see more information about it!
 
