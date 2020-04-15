@@ -11,3 +11,5 @@ If you want to use this project and add more code to it, then you'll need to cre
 <Code>TMDB_API_KEY="API key from The Movie Database API (TMDb)"</Code>
 
 You can get your own key from them on their website -> https://<span></span>developers.themoviedb.org/3/getting-started/introduction
+
+Licenced under the MIT License -> https://opensource.org/licenses/MIT
